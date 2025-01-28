@@ -20,121 +20,7 @@ function Login() {
     const [isLoading, setIsLoading] = useState(false); // Loading state
     const navigate = useNavigate();
 
-    // const handleLogin = (e) => {
-    //     e.preventDefault(); // Ngăn reload trang
-
-    //     setIsLoading(true); // Start loading
-
-    //     axios.post("http://localhost:8080/api/login", {
-    //         username: username,
-    //         password: password
-    //     })
-    //     .then((response) => {
-    //         const userData = response.data;
-    //         login({
-    //             username: userData.username,
-    //             avatar: userData.avatar,
-    //         });
-
-    //         // Fetch email
-    //         axios.get(`http://localhost:8080/api/username/email?username=${username}`)
-    //             .then((emailResponse) => {
-    //                 const email =emailResponse.data
-    //                 setEmail(email);
-    //                 // console.log("Email:", email);
-    //                 localStorage.setItem("user", JSON.stringify({
-    //                     email:email
-    //                 }));
-    //             })
-    //             .catch((error) => {
-    //                 console.error("Error fetching email:", error);
-    //             });
-
-    //         // Check user role
-    //         axios.get(`http://localhost:8080/api/role/${username}`)
-    //         .then((roleResponse) => {
-    //             const userRole = roleResponse.data;
-    //             // console.log(userRole)
-
-    //             if (userRole === "ADMIN") {
-    //                 navigate('/admin');
-    //             } else if (userRole === "USER") {
-    //                 navigate('/');
-    //             } else {
-    //                 setMessage("Role không hợp lệ.");
-    //                 setMessageType("error");
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             console.error("Lỗi khi kiểm tra quyền người dùng:", error);
-    //             setMessage("Lỗi khi kiểm tra quyền người dùng.");
-    //             setMessageType("error");
-    //         });
-
-    //     })
-    //     .catch((error) => {
-    //         console.error("Lỗi đăng nhập:", error);
-    //         setMessage("Tài khoản hoặc mật khẩu không đúng.");
-    //         setMessageType("error");
-    //         setPassWord('');
-    //     })
-    //     .finally(() => {
-    //         setIsLoading(false); // End loading
-    //     });
-    // };
-
-    // const handleLogin = (e) => {
-    //     e.preventDefault(); // Ngăn reload trang
     
-    //     setIsLoading(true); // Start loading
-    
-    //     axios.post("http://localhost:8080/api/login", {
-    //         username: username,
-    //         password: password
-    //     })
-    //     .then((response) => {
-    //         const userData = response.data;
-    //         login({
-    //             username: userData.username,
-    //             avatar: userData.avatar,
-    //         });
-    
-    //         // Fetch email
-    //         return axios.get(`http://localhost:8080/api/username/email?username=${username}`);
-    //     })
-    //     .then((emailResponse) => {
-    //         const email = emailResponse.data;
-    //         setEmail(email);
-    //         // console.log("Email:", email);
-    //         localStorage.setItem("user", JSON.stringify({ email: email }));
-    
-    //         // Check user role after setting email in localStorage
-    //         return axios.get(`http://localhost:8080/api/role/${username}`);
-    //     })
-    //     .then((roleResponse) => {
-    //         const userRole = roleResponse.data;
-    //         // console.log(userRole)
-    
-    //         if (userRole === "ADMIN") {
-    //             navigate('/admin');
-    //         } else if (userRole === "USER") {
-    //             navigate('/');
-    //         } else {
-    //             setMessage("Role không hợp lệ.");
-    //             setMessageType("error");
-    //         }
-    //     })
-    //     .catch((error) => {
-    //         console.error("Lỗi đăng nhập hoặc kiểm tra quyền người dùng:", error);
-    //         setMessage("Tài khoản hoặc mật khẩu không đúng.");
-    //         setMessageType("error");
-    //         setPassWord('');
-    //     })
-    //     .finally(() => {
-    //         setIsLoading(false); // End loading
-    //     });
-    // };
-
     const handleLogin = async (e) => {
         e.preventDefault(); // Ngăn reload trang
         setIsLoading(true); // Bắt đầu trạng thái loading
@@ -203,7 +89,14 @@ function Login() {
                         placeholder="Tên đăng nhập" 
                         required
                         value={username}
-                        onChange={(e) => setUserName(e.target.value)} />
+                        onChange={(e) => setUserName(e.target.value)} 
+                        maxLength={10}
+                        onInvalid={(e) => {
+                            e.target.setCustomValidity("Vui lòng nhập tên đăng nhập!"); // Tùy chỉnh thông báo
+                        }}
+                        onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập
+                        />
+                    
                 </Form.Group>
 
                 <Form.Group className={cx("input-box")}>
@@ -214,6 +107,10 @@ function Login() {
                         placeholder="Mật khẩu" 
                         required
                         value={password}
+                        onInvalid={(e) => {
+                            e.target.setCustomValidity("Vui lòng nhập mật khẩu!"); // Tùy chỉnh thông báo
+                        }}
+                        onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập
                         onChange={(e) => setPassWord(e.target.value)} />
                 </Form.Group>
 

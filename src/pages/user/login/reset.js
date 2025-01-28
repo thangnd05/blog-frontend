@@ -35,7 +35,7 @@ function ResetPassWord() {
   
       // Gửi yêu cầu đặt lại mật khẩu
       const response = await axios.post(
-        "http://localhost:8080/api/reset-password",
+        "http://localhost:8080/api/auth/reset-password",
         params,
         {
           headers: {
@@ -81,6 +81,10 @@ function ResetPassWord() {
             required
             value={token}
             onChange={(e) => setToken(e.target.value)}
+            onInvalid={(e) => {
+                e.target.setCustomValidity("Vui lòng nhập token!"); // Tùy chỉnh thông báo
+            }}
+            onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập
           />
         </Form.Group>
 
@@ -93,6 +97,10 @@ function ResetPassWord() {
             required
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
+            onInvalid={(e) => {
+                e.target.setCustomValidity("Vui lòng nhập mật khẩu mới!"); // Tùy chỉnh thông báo
+            }}
+            onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập
           />
         </Form.Group>
 
@@ -105,6 +113,11 @@ function ResetPassWord() {
             required
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            onInvalid={(e) => {
+                e.target.setCustomValidity("Xác nhận mật khẩu mới!"); // Tùy chỉnh thông báo
+            }}
+            onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập
+            
           />
         </Form.Group>
 

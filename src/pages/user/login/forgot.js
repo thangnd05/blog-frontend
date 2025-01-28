@@ -26,7 +26,7 @@ function ForgotPassword() {
 
         // Gửi yêu cầu đặt lại mật khẩu
         const response = await axios.post(
-          "http://localhost:8080/api/forgot-password",
+          "http://localhost:8080/api/auth/forgot-password",
           params,
           {
             headers: {
@@ -70,10 +70,14 @@ function ForgotPassword() {
             type="text"
             className={cx("wrap-username")}
             id="username"
-            placeholder="Email đăng nhập"
+            placeholder="Email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onInvalid={(e) => {
+                e.target.setCustomValidity("Vui lòng nhập email!"); // Tùy chỉnh thông báo
+            }}
+            onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập
           />
         </Form.Group>
 

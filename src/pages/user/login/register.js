@@ -26,7 +26,6 @@ function Register() {
             setMessageType("error");
             return;
         }
-
         setLoading(true);
         setMessage('');
         try {
@@ -67,6 +66,10 @@ function Register() {
                         className={cx("wrap-fullname")}
                         id="fullname"
                         placeholder="Họ và tên"
+                        onInvalid={(e) => {
+                            e.target.setCustomValidity("Vui lòng nhập Họ và tên!"); // Tùy chỉnh thông báo
+                        }}
+                        onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập
                         required
                         value={fullname}
                         onChange={(e) => setFullName(e.target.value)}
@@ -79,6 +82,17 @@ function Register() {
                         className={cx("wrap-email")}
                         id="email"
                         placeholder="Email"
+                        onInvalid={(e) => {
+                            if (!e.target.value) {
+                                e.target.setCustomValidity("Vui lòng nhập email!"); // Khi để trống
+                            } else if (!e.target.value.includes("@")) {
+                                e.target.setCustomValidity("Email phải có ký tự '@'!"); // Khi thiếu '@'
+                            } else {
+                                e.target.setCustomValidity("Vui lòng nhập đúng định dạng email!"); // Khi sai định dạng
+                            }
+                        }}
+                        onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập lại
+    
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -91,9 +105,14 @@ function Register() {
                         className={cx("wrap-username")}
                         id="username"
                         placeholder="Tên đăng nhập"
+                        onInvalid={(e) => {
+                            e.target.setCustomValidity("Vui lòng nhập tên đăng nhập!"); // Tùy chỉnh thông báo
+                        }}
+                        onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập
                         required
                         value={username}
                         onChange={(e) => setUserName(e.target.value)}
+                        maxLength={10}
                     />
                 </Form.Group>
 
@@ -103,9 +122,14 @@ function Register() {
                         className={cx("wrap-password")}
                         id="password"
                         placeholder="Mật khẩu"
+                        onInvalid={(e) => {
+                            e.target.setCustomValidity("Vui lòng nhập mật khẩu!"); // Tùy chỉnh thông báo
+                        }}        
+                        onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập               
                         required
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+
                     />
                 </Form.Group>
 
@@ -142,7 +166,7 @@ function Register() {
                 </div>
             </Form>
         </div>
-    );
+    )
 }
 
 export default Register;

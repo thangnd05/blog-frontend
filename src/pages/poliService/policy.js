@@ -11,6 +11,7 @@ function Policy() {
             <h2>1. Quyền và Nghĩa Vụ của Người Dùng</h2>
             <ul>
               <li>Người dùng cần cung cấp thông tin chính xác khi đăng ký tài khoản.</li>
+              <li>Khi đặt tên tài khoản chỉ được tối đa 10 ký tự</li>
               <li>
                 Nội dung do người dùng đăng tải phải tuân thủ pháp luật và không vi phạm quyền sở hữu trí tuệ.
               </li>
