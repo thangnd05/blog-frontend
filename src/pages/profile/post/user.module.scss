@@ -1,0 +1,43 @@
+.wrapper{
+    display: flex;
+}
+
+.title{
+    font-weight: 700;
+    font-size: 3rem;
+}
+.content{
+    text-align: justify;
+}
+.search-user{
+    padding: 10px 50px 10px 5px;
+    font-size: 1.6rem;
+    
+    &:focus{
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.3) !important; 
+        border-color: #6c757d;
+  }
+}
+.add-btn{
+    font-size: 1.6rem;
+    border-radius: 8px;
+}
+.content-wrap {
+    word-wrap: break-word;     /* Cho phép nội dung tự động xuống dòng */
+    overflow-wrap: break-word; /* Hỗ trợ cho trình duyệt mới */
+    white-space: normal;       /* Không giữ nội dung trên cùng một dòng */
+  }
+  
+
+@media (max-width: 1024px) {
+    .wrapper{
+        display: block;
+    }
+  }
+  
+
+  
+  
+  
+    

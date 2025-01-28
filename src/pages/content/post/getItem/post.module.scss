@@ -1,0 +1,39 @@
+
+
+.img-content{
+    border-radius: 14px;
+    width: 100%; 
+    aspect-ratio: 16 / 9 !important; /* Tỷ lệ hình chữ nhật  */
+    object-fit: cover;    
+
+
+    &:hover{
+        transform: scale(1.05); 
+        transition: transform 0.4s ease-in-out; 
+        cursor: pointer;
+    }
+}
+.custom-card {
+    border: none;
+    cursor: pointer;
+}
+.title-content{
+    font-weight: 600;
+    font-size: 2rem;
+    padding-top: 1rem;
+    white-space: nowrap; /* Không cho xuống dòng */
+    overflow: hidden; /* Ẩn phần nội dung bị tràn */
+    text-overflow: ellipsis; /* Thêm dấu "..." khi nội dung bị tràn */
+    max-width: 100%; /* Đảm bảo không vượt quá chiều rộng của phần tử chứa */
+}
+//post
+.title{
+    font-weight: 700;
+    font-size: 3rem;
+}
+.showAll-btn{
+    font-size: 1.8rem;
+    color:rgb(108 117 125);
+}
+
+

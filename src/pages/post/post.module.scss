@@ -1,0 +1,59 @@
+.title{
+    font-weight: 700;
+    font-size: 3rem;
+    // padding: 50px 0;
+}
+.post-title,.post-content{
+    font-size: 1.6rem;
+
+    &:focus{
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.3) !important; 
+        border-color: #6c757d;
+  }
+}
+.image-file{
+    font-size: 1.3rem;
+    
+
+    &:focus{
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.3) !important; 
+        border-color: #6c757d;
+  }
+
+}
+.post-title{
+    font-weight: 600;
+}
+
+.tit{
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+.categories{
+    font-size: 1.4rem;
+
+    &:focus{
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.3) !important; 
+        border-color: #6c757d;
+  }
+}
+.danger{
+    font-size: 1.4rem;
+}
+.new-post{
+    font-size: 1.6rem;
+    border-radius: 8px;
+
+    &:hover{
+        color: #6c757d;
+        background-color: transparent;
+    }
+}
+.jodit-ui-group {
+    display: none !important;
+  }
+
+

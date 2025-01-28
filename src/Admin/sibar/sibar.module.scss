@@ -1,0 +1,10 @@
+.sibar-wrap{
+    display: flex;
+    max-height: 90vh;
+}
+@media(max-width :767px){
+    .sibar-wrap{
+        display: block;
+        min-height: 0;
+    }
+}

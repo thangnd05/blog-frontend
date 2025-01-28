@@ -1,0 +1,29 @@
+
+
+.img-content{
+    border-radius: 14px;
+    width: 100%; 
+    aspect-ratio: 16 / 11; /* Tỷ lệ hình chữ nhật  */
+    object-fit: cover; 
+
+    &:hover{
+        transform: scale(1.05); 
+        transition: transform 0.4s ease-in-out; 
+        cursor: pointer;
+    }
+}
+.custom-card {
+    border: none;
+    cursor: pointer;
+}
+.title-content{
+    font-weight: 600;
+    font-size: 2rem;
+    padding-top: 1rem;
+
+}
+.error{
+    font-weight: 600;
+    font-size: 2rem;
+    padding-top: 1rem;
+}
