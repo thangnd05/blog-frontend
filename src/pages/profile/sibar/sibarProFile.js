@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "~/pages/user/IsLogin";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faNewspaper, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faComment, faNewspaper, faRightFromBracket,faUser } from "@fortawesome/free-solid-svg-icons";
 import routes from "~/config";
 import classNames from "classnames/bind";
 import style from "./sibar.module.scss"
@@ -18,6 +18,15 @@ function SibarProFile() {
       role="navigation"
       aria-label="Menu chính"
     >
+
+    <Link
+        to={routes.profile}
+        className="d-flex align-items-center mt-3 mt-md-0 text-nowrap"
+        aria-label="Thông tin"
+      >
+        <FontAwesomeIcon icon={faUser} className="mx-2" /> Thông tin
+      </Link>
+
       <Link
         to={routes.userPost}
         className="d-flex align-items-center mt-3 mt-md-0 text-nowrap"

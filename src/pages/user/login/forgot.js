@@ -12,10 +12,13 @@ function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Loading state
+
   const navigate = useNavigate(); // Hook để điều hướng
 
   const handleReset = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Bắt đầu trạng thái loading
     setMessage('');
     setError('');
 
@@ -49,7 +52,9 @@ function ForgotPassword() {
       } else {
         setError('Không thể kết nối đến server!');
       }
-    }
+    }finally {
+      setIsLoading(false); // Kết thúc trạng thái loading
+  }
   };
 
   return (
@@ -94,7 +99,11 @@ function ForgotPassword() {
         {error && <div className={cx("alert", "alert-danger")}>{error}</div>}
 
         <div className={cx("login-link")}>
-          <Button className={cx("login-btn")} type="submit">Gửi yêu cầu</Button>
+          <Button className={cx("login-btn")} 
+          type="submit"
+          disabled={isLoading}>
+          {isLoading ? 'Đang thực hiện...' : 'Gửi yêu cầu'}
+          </Button>
         </div>
 
         <div className={cx("register-link")}>

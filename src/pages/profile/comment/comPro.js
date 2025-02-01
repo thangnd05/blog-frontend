@@ -45,7 +45,7 @@ function ComProFileTable(){
 
     useEffect(()=>{
         if (!userId) {
-            console.log("userId không hợp lệ:", userId);
+            // console.log("userId không hợp lệ:", userId);
             return;
           }
 

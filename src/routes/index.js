@@ -23,6 +23,9 @@ import ResetPassWord from '~/pages/user/login/reset';
 import ForgotPassword from '~/pages/user/login/forgot';
 import Policy from '~/pages/poliService/policy';
 import Service from '~/pages/poliService/service';
+import InfoProfile from '~/pages/profile/info/info';
+import ChangePassword from '~/pages/profile/info/change';
+
 
 
 const publicRoutes = [
@@ -52,6 +55,8 @@ const publicRoutes = [
     {path:routes.forgot,component:ForgotPassword},
     {path:routes.policy,component:Policy},
     {path:routes.service,component:Service},
+    {path:routes.profile,component:InfoProfile},
+    {path:routes.changePassword,component:ChangePassword}
 
 
 

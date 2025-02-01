@@ -1,5 +1,7 @@
 
 const routes = {
+
+
     home: '/',
     content: '/content',
     post: '/post',
@@ -29,6 +31,9 @@ const routes = {
     
     updatePost: '/update/:postId',
     updateComment: '/updateComment/:commentId',
+
+    changePassword:'/change-password',
+    profile:'/profile',
     userPost: '/user/post',
     userComment: '/user/comment',
     categoryDetails :'/category/:categoryId'

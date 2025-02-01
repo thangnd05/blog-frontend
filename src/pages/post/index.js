@@ -103,7 +103,7 @@ function Post() {
   };
 const handleCategoryChange = (e) => {
   setCategoryId(e.target.value); // Cập nhật categoryId
-  console.log(e.target.value); // Log giá trị mới của categoryId
+  // console.log(e.target.value); // Log giá trị mới của categoryId
 };
 
 

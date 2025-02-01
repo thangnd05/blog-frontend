@@ -116,7 +116,7 @@ function Header() {
                   </Dropdown.Toggle>
                   
                   <Dropdown.Menu className={cx("custom-dropdown")}>
-                    <Dropdown.Item  as={Link} to={routes.userPost} className={cx("my-2","home_sm","custom-dropdown-item")}>Hồ sơ</Dropdown.Item>
+                    <Dropdown.Item  as={Link} to={routes.profile} className={cx("my-2","home_sm","custom-dropdown-item")}>Hồ sơ</Dropdown.Item>
                     <Dropdown.Item  onClick={logout} as={Link } to={routes.home} className={cx("my-2","home_sm","custom-dropdown-item")}>Đăng xuất</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>

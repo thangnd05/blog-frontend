@@ -53,12 +53,14 @@ function PostTabeProFile() {
     const fetchData = async () => {
       
       try {
-        if (!userId) {
-          console.log("userId không hợp lệ:", userId);
-          return;
-        }
+        // if (!userId) {
+        //   return;
+        // }
         
         const response = await axios.get(`http://localhost:8080/api/posts/user/${userId}`);
+        if (response.status===404){
+          return;
+        }
         const postsData = response.data;
 
         const postsWithDetails = await Promise.all(
@@ -89,7 +91,7 @@ function PostTabeProFile() {
 
         setData(postsWithDetails);
       } catch (err) {
-        console.error(err);
+        // console.error(err);
       }
     };
 
