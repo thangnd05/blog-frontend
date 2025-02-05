@@ -54,6 +54,8 @@
 .result-item{
     padding: 5px 5px;
     border-bottom: 1px solid black;
-
+    white-space: nowrap; /* Không cho xuống dòng */
+    overflow: hidden; /* Ẩn phần nội dung bị tràn */
+    text-overflow: ellipsis; /* Thêm dấu "..." khi nội dung bị tràn */
 }
 

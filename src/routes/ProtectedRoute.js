@@ -11,6 +11,10 @@ function PrivateRoute({ children }) {
     
     const value = JSON.parse(localStorage.getItem('user'));
     useEffect(() => {
+        if(value===null){
+            return;
+
+        }
         axios
             .get(`http://localhost:8080/api/role?email=${value.email}`)
             .then((roleResponse) => {
@@ -28,7 +32,8 @@ function PrivateRoute({ children }) {
 
     // Nếu role chưa được xác định, hiển thị trạng thái chờ
     if (role === null) {
-        return <h1>Đang kiểm tra quyền truy cập...</h1>;
+        return <h1>Bạn không có quyền truy cập ...</h1>;
+        
     }
 
     // Nếu không phải ADMIN, chuyển hướng đến trang lỗi

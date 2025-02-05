@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Table from 'react-bootstrap/Table';
+// import Table from 'react-bootstrap/Table';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,8 @@ import classNames from 'classnames/bind';
 import style from './../user/user.module.scss';
 import { Link } from 'react-router-dom';
 import routes from '~/config';
+import DOMPurify from 'dompurify';
+
 
 const cx = classNames.bind(style);
 
@@ -164,9 +166,15 @@ function ComTable() {
             <p>
               <strong>Tác giả:</strong> {com.username}
             </p>
-            <p className={cx("content-wrap")}>
-              <strong>Nội dung:</strong> {com.content}
-            </p>
+            <p className={cx("content")}>
+                          <strong>Nội dung:</strong>{" "}
+                          <span
+                            className={cx('content-wrap')}
+                            dangerouslySetInnerHTML={{
+                              __html: DOMPurify.sanitize(com.content),
+                            }}
+                          />
+                        </p>
             <p>
               <strong>Ngày bình luận:</strong> {com.created_at}
             </p>

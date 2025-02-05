@@ -22,7 +22,6 @@ function Login() {
 
     
     const handleLogin = async (e) => {
-        e.preventDefault(); // Ngăn reload trang
         setIsLoading(true); // Bắt đầu trạng thái loading
         setMessage(""); // Xóa thông báo lỗi cũ (nếu có)
     
@@ -38,9 +37,7 @@ function Login() {
             });
 
             const emailRes=loginResponse.data
-    
             
-    
             // Kiểm tra xem username có phải là email không
             const isEmail = /\S+@\S+\.\S+/.test(username); // Kiểm tra định dạng email
             let user = {};
@@ -105,18 +102,20 @@ function Login() {
             setIsLoading(false); // Kết thúc trạng thái loading
         }
     };
+
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
+            handleLogin()
+        }
+    };
     
     
     
     
     return (
         <div className={cx("bodic")}>
-            <Form className={cx("wrap")} id="login-form" onSubmit={handleLogin}
-             onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                    handleLogin(e);
-                }
-            }}>
+            <Form className={cx("wrap")} id="login-form" onSubmit={handleLogin} onKeyDown={handleKeyDown}>
                 <h1>Đăng nhập</h1>
                 <Form.Group className={cx("input-box")}>
                     <Form.Control 

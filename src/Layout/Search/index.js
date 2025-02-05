@@ -22,7 +22,7 @@ function Search() {
             // Gửi yêu cầu GET đến API với giá trị tìm kiếm (searchValue)
             axios.get(`http://localhost:8080/api/search?title=${searchValue}`)
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     setData(response.data);
                 })
                 .catch((error) => {
@@ -39,18 +39,18 @@ function Search() {
         setSearchValue("");      
         inputRef.current.focus();
     }
-    //ấn ra ngoài sẽ biến mất thanh tìm kiếm
-    // const handleOut = () => {
-    //     setShowResult(false);
-    //     setSearchValue(""); 
-    // }
-        
+
+    const handleOut = () => {
+        setShowResult(false);
+        setSearchValue(""); 
+    }
+
     
     const onSearch = (e) => {
         e.preventDefault();
         if (searchValue) {
             if (data.length === 0) {
-                navigate("/error"); // Chuyển hướng nếu không có kết quả
+                navigate(routes.error); // Chuyển hướng nếu không có kết quả
             } else {
                 navigate(`/search/${searchValue}`);
             }
@@ -75,7 +75,7 @@ function Search() {
             onSearch(e);  // Gọi hàm onSearch khi nhấn Enter
         }}}
             onFocus={() => setShowResult(true)}
-            // onBlur={() => setTimeout(() =>handleOut(false), 100)}
+            onBlur={() => setTimeout(() =>handleOut(false), 250)}
             />
 
 

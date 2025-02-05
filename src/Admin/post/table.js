@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Table from 'react-bootstrap/Table';
+// import Table from 'react-bootstrap/Table';
 import { useEffect,useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPen, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';

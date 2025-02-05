@@ -1,6 +1,8 @@
 const images = {
     // logo: require('~/assets/images/logo.svg').default,
     noImage: require('~/assets/images/no-image.png'),
+    defaultImage:require("~/assets/images/postImageDefault.jpg"),
+    avtImage:require("~/assets/images/avtImage.jpg")
 };
 export const SearchIcon = ({ width = '2.4rem', height = '2.4rem', className }) => (
     <svg

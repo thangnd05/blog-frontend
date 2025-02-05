@@ -26,13 +26,8 @@ function Update() {
         replaceNBSP: true, // Xóa các ký tự khoảng trắng không cần thiết
         removeEmptyBlocks: true // Xóa các thẻ rỗng 
       }
-        const editor = useRef(null); 
-      
-
-
-
-
-
+      const editor = useRef(null); 
+    
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/posts/${postId}`)
@@ -46,15 +41,17 @@ function Update() {
     
     const handleUpdate = (e) => {
       e.preventDefault(); // Ngăn chặn form submit mặc định
-      
       if (isSaving) return;
 
-
       // Kiểm tra dữ liệu hợp lệ
-      if (!post.title.trim() || !post.content.trim()) {
-          alert("Tiêu đề và nội dung không được để trống.");
+      if (!post.title.trim() ) {
+          alert("Tiêu đề không được để trống.");
           return;
       }
+      if (!post.content.trim()) {
+        alert("Nội dung không được để trống.");
+        return;
+    }
 
       setIsSaving(true); // Bật trạng thái lưu dữ liệu
     //   const formattedContent = post.content.replace(/\n/g, '<br />'); // Xử lý xuống dòng
@@ -63,10 +60,7 @@ function Update() {
       const formDataWithContent = { 
         ...post, 
         content: post.content // Giữ nguyên nội dung không thay đổi
-    };
-
-    
-
+    };   
       // Gửi request cập nhật bài viết
       axios.put(`http://localhost:8080/api/posts/${postId}`, formDataWithContent, {
           headers: { "Content-Type": "application/json" },  // Đảm bảo header đúng
@@ -105,7 +99,14 @@ function Update() {
                         ref={editor} 
                         value={post.content} // Gắn giá trị với nội dung bài viết trong state
                         config={config} // Cấu hình của JoditEditor
-                        onBlur={newContent => setPost({ ...post, content: newContent })} // Cập nhật nội dung khi mất focus
+                        onBlur={(newContent) => {
+                          // Kiểm tra nếu nội dung chỉ chứa <p><br></p>
+                          if (newContent === "<p><br></p>") {
+                            setPost({ ...post, content: "" }); // Nếu đúng, đặt lại nội dung là rỗng
+                          } else {
+                            setPost({ ...post, content: newContent }); // Nếu không, giữ nguyên nội dung
+                          }
+                        }}                    
                         onChange={newContent => {}} // Có thể bỏ qua hoặc dùng nếu cần thiết
                     />
                 </Form.Group>

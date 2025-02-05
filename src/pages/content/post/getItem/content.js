@@ -5,6 +5,7 @@ import axios from "axios";
 import { Row, Col, Card,Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import routes from "~/config";
+import images from "~/assets/images";
 
 const cx = classNames.bind(style);
 
@@ -63,7 +64,7 @@ function PostItem() {
       
             setPosts(postsWithDetails);
           } catch (err) {
-            console.error(err);
+            // console.error(err);
           }
         };
       
@@ -71,13 +72,13 @@ function PostItem() {
       }, []);
 
       const groupCategory = posts.reduce((group, name) => {
-        const { categoryName } = name;
+        const { categoryName } = name;//lấy categoryname theo bài viết hiện tại
         if (!group[categoryName]) {
-            group[categoryName] = [];
+            group[categoryName] = [];//nếu chưa có danh mục thì tạo 1 mảng mới
         }
-        group[categoryName].push(name);
-        return group;
-    }, {});
+        group[categoryName].push(name); //thêm bài viết vào danh mục tương ứng
+        return group; //trả về group đã cập nhật
+    }, {}); //khởi tạo group là 1 object rỗng
 
   
     return (
@@ -109,7 +110,7 @@ function PostItem() {
                       : (
                         <Card.Img
                           className={cx('img-content')}
-                          src="https://media.istockphoto.com/id/1224500457/vi/anh/n%E1%BB%81n-t%E1%BA%A3ng-c%C3%B4ng-ngh%E1%BB%87-tr%E1%BB%ABu-t%C6%B0%E1%BB%A3ng-m%C3%A3-l%E1%BA%ADp-tr%C3%ACnh-c%E1%BB%A7a-nh%C3%A0-ph%C3%A1t-tri%E1%BB%83n-ph%E1%BA%A7n-m%E1%BB%81m-v%C3%A0-k%E1%BB%8Bch-b%E1%BA%A3n-m%C3%A1y-t%C3%ADnh.jpg?s=612x612&w=0&k=20&c=492Izyb2fyCZfeBOiFxUnxeoMTOH8STWSFa9NJ2WWns="
+                          src={images.defaultImage}
                           alt={post.title}
                         />
                       )}

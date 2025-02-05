@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { fetchUserId } from "~/hook/service";
 import { useParams } from "react-router-dom";
+import DOMPurify from 'dompurify';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 
 const cx = classNames.bind(style);
@@ -16,12 +19,13 @@ function Comment() {
     const [userId, setUserId] = useState(null);
     const [isDeleting, setIsDeleting] = useState(false);
     const [isEdit,setIsEdit] =useState(false)
-    const [newContent, setNewContent] = useState(""); // Nội dung mới của bình luận
-    const inputRef =useRef(null)
+    const [newComment, setnewComment] = useState(""); // Nội dung mới của bình luận
+    const quillRef = useRef();
 
     const navigate = useNavigate();
     const { id } = useParams();
     
+
 
     // Lấy dữ liệu bình luận
     useEffect(() => {
@@ -56,6 +60,10 @@ function Comment() {
         if (!userId) {
             alert("Bạn cần đăng nhập để bình luận.");
             return navigate("/login");
+        }
+        if (!comment.trim()) {
+            alert("Nội dung bình luận không được để trống.");
+            return;
         }
         try {
             // Gửi bình luận mới
@@ -106,24 +114,34 @@ function Comment() {
     
     const handleEdit = (commentId, currentContent) => {
         setIsEdit(commentId); // Đặt ID của bình luận đang sửa
-        setNewContent(currentContent); // Gán nội dung hiện tại vào ô nhập
+        setnewComment(currentContent); // Gán nội dung hiện tại vào Quill
+    
         setTimeout(() => {
-            if (inputRef.current) {
-              inputRef.current.focus(); // Focus vào ô nhập
-              inputRef.current.setSelectionRange(newContent.length, newContent.length); // Đưa con trỏ đến cuối văn bản
+            if (quillRef.current) {
+                const editor = quillRef.current.getEditor(); // Lấy đối tượng Quill
+                editor.focus(); // Focus vào editor
+                
+                // Đưa con trỏ đến cuối văn bản
+                const length = editor.getLength(); // Lấy độ dài nội dung
+                editor.setSelection(length, length);
             }
-          }, 0); // Đảm bảo focus và setSelectionRange được thực hiện sau khi render
+        }, 0); // Đảm bảo focus sau khi render
     };
+    
     
     // Hàm lưu bình luận đã sửa
     const handleSave = (commentId) => {
+        if (!newComment.trim()) {
+            alert("Vui lòng nhập nội dung bình luận.");
+            return; // Ngừng thực hiện nếu nội dung trống
+        }
         axios
-            .put(`http://localhost:8080/api/comment/${commentId}`, { content: newContent })
+            .put(`http://localhost:8080/api/comment/${commentId}`, { content: newComment })
             .then(() => {
                 // Cập nhật danh sách bình luận
                 setData((prevData) =>
                     prevData.map((comment) =>
-                        comment.comment_id === commentId ? { ...comment, content: newContent } : comment
+                        comment.comment_id === commentId ? { ...comment, content: newComment } : comment
                     )
                 );
                 setIsEdit(null); // Thoát chế độ sửa
@@ -139,26 +157,41 @@ function Comment() {
 
         <Container className={cx("wrapper")}>
             <Form onSubmit={handleSubmit}>
-                <Form.Group>
+
+            {!isEdit && (
+                <Form.Group className={cx("quill")}>
                     <Form.Label className={cx("title")}>Bình luận</Form.Label>
-                    <Form.Control
-                        className={cx("comment")}
-                        placeholder="Nhập bình luận"
+                    <ReactQuill
+                        className={cx("comment","h-100","fs-com")}
                         value={comment}
-                        type="text"
-                        onChange={(e) => setComment(e.target.value)}
-                        required
-                        as="textarea"
-                        rows={5}
+                        onChange={(value) => {
+                            // Kiểm tra và loại bỏ nội dung <p><br></p>
+                            if (value === "<p><br></p>") {
+                                setComment("");  // Xóa nội dung trống
+                            } else {
+                                setComment(value);  // Cập nhật giá trị bình luận
+                            }
+                        }}        required
+                        placeholder="Nhập bình luận"
+                        style={{ minHeight: "180px"}}  // Bạn có thể điều chỉnh theo ý muốn
+                        modules={{
+                            toolbar: false,  // Tắt toolbar, chỉ cho phép nhập văn bản
+                        }}
+                        theme="bubble" // Thay vì "snow", dùng "bubble" sẽ không có viền
+
                     />
-                </Form.Group>
-                <Button
+                    <Button
                     variant="secondary"
                     className={cx("new-comment", "my-4 px-5 text-center")}
                     type="submit"
                 >
                     Gửi
                 </Button>
+                </Form.Group>
+            )}
+
+                
+                
             </Form>
 
             <div className={cx("comment-show", "d-block")}>
@@ -171,19 +204,27 @@ function Comment() {
                         <div className={cx("w-100" )}>
                             
                         <Form className={cx('w-100')}>
-                            <Form.Group>
-                                <Form.Control
-                                className={cx("comment")}
-                                placeholder="Nhập bình luận"
-                                type="text"
-                                value={newContent}
-                                onChange={(e) => setNewContent(e.target.value)}
-                                required
-                                as="textarea"
-                                rows={4}
-                                ref={inputRef}
+                            <Form.Group className={cx("quill")}>
+                                <ReactQuill
+                                    className={cx("comment","h-100","fs-com")}
+                                    value={newComment}
+                                    onChange={(value) => {
+                                        // Kiểm tra và loại bỏ nội dung <p><br></p>
+                                        if (value === "<p><br></p>") {
+                                            setnewComment("");  // Xóa nội dung trống
+                                        } else {
+                                            setnewComment(value);  // Cập nhật giá trị bình luận
+                                        }
+                                    }}        required
+                                    placeholder="Nhập bình luận"
+                                    style={{ minHeight: "150px"}}  // Bạn có thể điều chỉnh theo ý muốn
+                                    modules={{
+                                        toolbar: false,  // Tắt toolbar, chỉ cho phép nhập văn bản
+                                    }}
+                                    theme="bubble" // Thay vì "snow", dùng "bubble" sẽ không có viền
+                                    ref={quillRef}
 
-                            />
+                                />
                             </Form.Group>
                         </Form>    
                             <div className={cx("d-flex mt-3")}>
@@ -203,7 +244,7 @@ function Comment() {
                         </div>
                     ) : (
                         <>
-                            <div className={cx("text-content")}>{cmt.content}</div>
+                            <div className={cx("text-content")} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(cmt.content) }}/>                      
                             <div className={cx("d-flex align-items-start mt-3")}>
                                 {cmt.userId === userId && (
                                     <>

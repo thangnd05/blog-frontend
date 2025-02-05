@@ -1,6 +1,7 @@
 .sibar-wrap{
     display: flex;
-    max-height: 90vh;
+    min-height: 80vh;
+    height: 100%;
 }
 @media(max-width :767px){
     .sibar-wrap{

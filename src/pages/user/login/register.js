@@ -20,7 +20,7 @@ function Register() {
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         if (!rememberMe) {
             setMessage("Bạn phải đồng ý với điều khoản & điều kiện.");
             setMessageType("error");
@@ -38,7 +38,7 @@ function Register() {
             setLoading(false);
             setMessage("Đăng ký thành công. Vui lòng đăng nhập.");
             setMessageType("success");
-            setTimeout(() => navigate('/login'), 1500);
+            setTimeout(() => navigate(routes.login), 2000);
         } catch (err) {
             setLoading(false);
             if (err.response) {
@@ -56,9 +56,19 @@ function Register() {
         }
     };
 
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
+            handleRegister()
+        }
+    };
+
+
+    
+
     return (
         <div className={cx("bodic")}>
-            <Form className={cx("wrap")} id="login-form" onSubmit={handleRegister}>
+            <Form className={cx("wrap")} id="login-form" onSubmit={handleRegister} onKeyDown={handleKeyDown}>
                 <h1>Đăng ký</h1>
                 <Form.Group className={cx("input-box")}>
                     <Form.Control

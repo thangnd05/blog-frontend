@@ -65,7 +65,7 @@ function PostTabeProFile() {
 
         const postsWithDetails = await Promise.all(
           postsData.map(async (post) => {
-            let username = "Anonymous";
+            let username = "";
             let categoryName = "";
 
             try {
@@ -80,7 +80,7 @@ function PostTabeProFile() {
 
             try {
               const userResponse = await axios.get(`http://localhost:8080/api/user/${post.userId}`);
-              username = userResponse.data.username || "Anonymous";
+              username = userResponse.data.username || null;
             } catch (err) {
               // console.error("Error fetching user data:", err);
             }
@@ -94,7 +94,6 @@ function PostTabeProFile() {
         // console.error(err);
       }
     };
-
     fetchData();
   }, [userId]);
 
@@ -200,6 +199,7 @@ function PostTabeProFile() {
                     }}
                   />
                 </p>
+                <p>{post.content}</p>
                 <p>
                   <strong>Danh mục:</strong> {post.categoryName}
                 </p>

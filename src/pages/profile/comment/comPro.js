@@ -8,6 +8,8 @@ import style from "../post/user.module.scss"
 import {  faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import routes from "~/config";
 import { fetchUserId } from "~/hook/service";
+import DOMPurify from 'dompurify';
+
 
 
 const cx=classNames.bind(style);
@@ -110,8 +112,14 @@ function ComProFileTable(){
         })
         .map((com) => (
           <div key={com.comment_id} className="border p-3 mb-3 rounded shadow-sm w-100">
-            <p className={cx("content-wrap")}>
-              <strong>Nội dung:</strong> {com.content}
+            <p className={cx("content")}>
+              <strong>Nội dung:</strong>{" "}
+              <span
+                className={cx('content')}
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(com.content),
+                }}
+              />
             </p>
             <p><strong>Ngày bình luận:</strong> {com.created_at}</p>
             <p><strong>Hành động:</strong></p>

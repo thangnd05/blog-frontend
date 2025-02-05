@@ -22,13 +22,13 @@ function Post() {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("Chưa chọn tệp"); // Lưu tên tệp đã chọn
   const [categoryId, setCategoryId] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error,setError] =useState("")
 
   const navigate = useNavigate();
 
 
-  //dùng để chỉnh chỗ nhập chỗ content
-  const config={
+//dùng để nhập content khi dùng texteditor  
+const config={
     placeholder:'Nhập nội dung',
     height:400,
     textIcons: false,
@@ -48,8 +48,8 @@ function Post() {
   }, []);
 
   const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile);
+    const selectedFile = e.target.files[0]; //chọn file đầu tiên người dùng chọn từ file ảnh
+    setFile(selectedFile); //lưu ảnh vào state
     setFileName(selectedFile ? selectedFile.name : "Chưa chọn tệp");
   };
   
@@ -62,8 +62,23 @@ function Post() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isSubmitting) return; // Ngăn ngừa gửi nhiều lần
-  setIsSubmitting(true);
+  
+    if (!title.trim()) {
+      setError("Tiêu đề không được để trống");
+      return;
+    }
+  
+    if (!content.trim()) {
+      setError("Nội dung không được để trống");
+      return;
+    }
+  
+    if (!categoryId) {
+      setError("Hãy chọn danh mục");
+      return;
+    }
+  
+    setError(""); // Xóa lỗi nếu danh mục hợp lệ
 
     if (!userId) {
       alert("Bạn cần đăng nhập để tạo bài viết.");
@@ -125,6 +140,10 @@ const handleCategoryChange = (e) => {
               required
               type="text"
               placeholder="Nhập tiêu đề"
+              onInvalid={(e) => {
+                  e.target.setCustomValidity("Vui lòng nhập tiêu đề"); // Tùy chỉnh thông báo
+              }}
+              onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập
             />
           </Form.Group>
 
@@ -135,56 +154,68 @@ const handleCategoryChange = (e) => {
               value={content} 
               config={config}
               onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-              onChange={newContent => {}}          
+              onChange={newContent => {}}    
+              onInvalid={(e) => {
+                  e.target.setCustomValidity("Vui lòng nhập nội dung!"); // Tùy chỉnh thông báo
+              }}
+              onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập
               />
 
                
           </Form.Group>
 
           <Form.Group>
-  <Form.Label className={cx("tit")}>Danh mục</Form.Label>
-  <Form.Select
-    as="select"
-    className={cx("p-3", "categories", "categoryName")}
-    value={categoryId}
-    onChange={handleCategoryChange}
-    >
-    <option value="">Chọn danh mục</option>
-    {category.map((category) => (
-      <option key={category.category_id} value={category.category_id}>
-        {category.categoryName} {/* Hiển thị tên danh mục */}
-      </option>
-    ))}
-  </Form.Select>
-</Form.Group>
+            <Form.Label className={cx("tit")}>Danh mục</Form.Label>
+            <Form.Select
+              as="select"
+              className={cx("p-3", "categories", "categoryName")}
+              value={categoryId}
+              onChange={handleCategoryChange}
+              >
+              <option value="">Chọn danh mục</option>
+              {category.map((category) => (
+                <option key={category.category_id} value={category.category_id}>
+                  {category.categoryName} {/* Hiển thị tên danh mục */}
+                </option>
+              ))}
+
+
+            </Form.Select>
+          </Form.Group>
+
+          {error && <p className={cx("text-danger fw-bold mt-2")}>{error}</p>}
 
 
 
 
-          <Form.Group className={cx("my-3")} > 
-          <div>
-            <Form.Label className={cx("text-danger",'danger')}>Bạn có thể chọn ảnh cho phù hợp yêu cầu với nội dung nếu bạn để trống thì sẽ hình ảnh đó sẽ được sử dụng hình ảnh mặc định trang web </Form.Label>
-          </div>
-            <Form.Label className={cx("tit")}>Hình ảnh</Form.Label>          
-          <div>
-            <input
-              type="file"
-              id="fileInput"
-              onChange={handleFileChange}
-              style={{ display: "none" }}
-            />
-            <label htmlFor="fileInput">
-              {fileName}
-            </label>
-            <Button
-              variant="outline-secondary"
-              onClick={() => document.getElementById("fileInput").click()}
-              className={cx("image-file","mx-3")}
-            >
-              Chọn tệp
-            </Button>
-          </div>
-        </Form.Group>
+
+          <Form.Group className={cx("my-2")} > 
+            <div>
+              <Form.Label className={cx("text-success",'success')}>Bạn có thể chọn ảnh cho phù hợp yêu cầu với nội dung nếu bạn để trống thì sẽ hình ảnh đó sẽ được sử dụng hình ảnh mặc định trang web </Form.Label>
+            </div>
+
+            <Form.Label className={cx("tit")}>Hình ảnh</Form.Label>  
+
+            <div>
+              <input
+                type="file"
+                id="fileInput"
+                onChange={handleFileChange}
+                style={{ display: "none" }}
+              />
+              <label htmlFor="fileInput">
+                {fileName}
+              </label>
+              <Button
+                variant="outline-secondary"
+                onClick={() => document.getElementById("fileInput").click()}
+                className={cx("image-file","mx-3")}
+              >
+                Chọn tệp
+              </Button>
+            </div>
+          </Form.Group>
+
           <Button
             variant="secondary"
             className={cx("new-post", "my-5")}
@@ -192,7 +223,7 @@ const handleCategoryChange = (e) => {
           >
             Tạo bài viết
           </Button>
-        </Form>
+          </Form>
       </div>
     </Container>
   );

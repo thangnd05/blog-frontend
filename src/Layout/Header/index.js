@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import style from "./header.module.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import images from '~/assets/images';
 import classNames from "classnames/bind";
 import Search from '../Search';
 import { UserContext } from '~/pages/user/IsLogin';
@@ -106,7 +106,7 @@ function Header() {
                 <Dropdown>               
                   <Dropdown.Toggle as="div" className={cx("user-info")}>
                     <Image
-                      src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/07/anh-dep-thien-nhien-2-1.jpg"
+                      src={images.avtImage}
                       alt="Avatar"
                       className={cx("avatar")}
                     />
@@ -122,10 +122,10 @@ function Header() {
                 </Dropdown>
               ) : (
                 <>
-                  <Nav.Link as={Link} to={routes.login}className={cx("mx-5")}>
+                  <Nav.Link as={Link} to={routes.login} className={cx("mx-5","home")}>
                     Đăng nhập
                   </Nav.Link>
-                  <Nav.Link as={Link} to={routes.register} className={cx("mx-5")}>
+                  <Nav.Link as={Link} to={routes.register} className={cx("mx-5","home")}>
                     Đăng ký
                   </Nav.Link>
                 </>
@@ -185,10 +185,10 @@ function Header() {
               ) : (
                 <>
                 <div className={cx("d-flex justify-content-between align-items-end ")}>
-                  <Nav.Link as={Link} to={routes.login} onClick={handleClose} className={cx("home")}>
+                  <Nav.Link as={Link} to={routes.login} onClick={handleClose} className={cx("home_sm")}>
                     Đăng nhập
                   </Nav.Link>
-                  <Nav.Link as={Link} to={routes.register} onClick={handleClose} className={cx("home")}>
+                  <Nav.Link as={Link} to={routes.register} onClick={handleClose} className={cx("home_sm")}>
                     Đăng ký
                   </Nav.Link>
                 </div>

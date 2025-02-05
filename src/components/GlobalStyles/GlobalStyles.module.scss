@@ -8,11 +8,27 @@
 
     --font-family: 'ProximaNova', sans-serif;
 
-    // Default layout
-    --default-layout-header-height: 60px;
-    --default-layout-width: 1150px;
-    --default-layout-horizontal-spacer: 24px;
+
+
+    --font-weight: 600;
+    --font-size: 2rem;
+    --padding-top: 1rem;
+    
 }
+
+.title-content {
+    font-weight: var(--font-weight);
+    font-size: var(--font-size);
+    padding-top: var(--padding-top);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fs-com{
+    font-size: var(--font-size);
+}
+
 
 * {
     margin: 0;
@@ -63,4 +79,6 @@ a {
 ul,li{
     list-style: none;
 }
+
+
 

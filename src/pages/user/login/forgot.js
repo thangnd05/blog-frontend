@@ -17,7 +17,6 @@ function ForgotPassword() {
   const navigate = useNavigate(); // Hook để điều hướng
 
   const handleReset = async (e) => {
-    e.preventDefault();
     setIsLoading(true); // Bắt đầu trạng thái loading
     setMessage('');
     setError('');
@@ -57,17 +56,20 @@ function ForgotPassword() {
   }
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
+        handleReset()
+    }
+};
+
   return (
     <div className={cx("bodic")}>
       <Form 
         className={cx("wrap")} 
         id="login-form"
         onSubmit={handleReset}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            handleReset(e);
-          }
-        }}
+        onKeyDown={handleKeyDown}
       >
         <h1>Quên mật khẩu</h1>
         <Form.Group className={cx("input-box")}>

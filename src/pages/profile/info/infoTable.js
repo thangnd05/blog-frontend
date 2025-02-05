@@ -63,6 +63,7 @@ function InfoProfileTable() {
 
     const handleSave = async () => {
         try {
+            
             // Gửi yêu cầu PUT để cập nhật thông tin người dùng trên server
             await axios.put(`http://localhost:8080/api/user/${userId}`, formData);
             setData(formData);
@@ -91,6 +92,13 @@ function InfoProfileTable() {
         }
     };
 
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
+            handleSave()
+        }
+    };
+
     
 
 
@@ -104,7 +112,7 @@ function InfoProfileTable() {
                 <div className={cx("profile-container")}>
                     {isEdit ? (
                         <div>
-                            <Form>
+                            <Form onKeyDown={handleKeyDown}>
                                 <Form.Group controlId="fullname">
                                     <Form.Label>Họ và Tên</Form.Label>
                                     <Form.Control
@@ -126,7 +134,7 @@ function InfoProfileTable() {
 
                                     />
                                 </Form.Group>
-                                <Form.Group controlId="email">
+                                {/* <Form.Group controlId="email">
                                     <Form.Label>Email</Form.Label>
                                     <Form.Control
                                         type="email"
@@ -135,7 +143,8 @@ function InfoProfileTable() {
                                         onChange={handleChange}
                                         className={cx("input-info")}
                                     />
-                                </Form.Group>
+                                </Form.Group> */}
+
 
                                 <Button variant="success" className={cx("btn-save")} onClick={handleSave}>Lưu thay đổi</Button>
                                 <Button variant="secondary" className={cx("btn-cancer","mx-2")} onClick={() => setIsEdit(false)}>Hủy</Button>

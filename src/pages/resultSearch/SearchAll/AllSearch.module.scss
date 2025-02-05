@@ -3,7 +3,7 @@
 .img-content{
     border-radius: 14px;
     width: 100%; 
-    aspect-ratio: 16 / 11; /* Tỷ lệ hình chữ nhật  */
+    aspect-ratio: 16 / 9; /* Tỷ lệ hình chữ nhật  */
     object-fit: cover; 
 
     &:hover{
@@ -20,7 +20,9 @@
     font-weight: 600;
     font-size: 2rem;
     padding-top: 1rem;
-
+    white-space: nowrap; /* Không cho xuống dòng */
+    overflow: hidden; /* Ẩn phần nội dung bị tràn */
+    text-overflow: ellipsis; /* Thêm dấu "..." khi nội dung bị tràn */
 }
 .error{
     font-weight: 600;

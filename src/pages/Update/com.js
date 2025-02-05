@@ -1,9 +1,11 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect} from 'react';
+import { useState, useEffect,useRef} from 'react';
 import axios from 'axios';
 import { Container, Form, Button } from "react-bootstrap";
 import classNames from "classnames/bind";
 import styles from "../post/post.module.scss"; // Nếu có sử dụng CSS module
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const cx = classNames.bind(styles);
 
@@ -13,21 +15,7 @@ function CommentUpdate(){
     const [comment, setComment] = useState({ content: "" });
     const [isSaving, setIsSaving] = useState(false);
 
-
-
-    // const config={
-    //     placeholder:'Nhập nội dung',
-    //     height:400,
-    //     textIcons: false,
-    //     iframe: false,
-    //     replaceNBSP: true, // Xóa các ký tự khoảng trắng không cần thiết
-    //     removeEmptyBlocks: true // Xóa các thẻ rỗng 
-    //   }
-    //     const editor = useRef(null); 
-      
-
-
-
+    const quillRef = useRef();
 
 
     useEffect(()=>{
@@ -47,7 +35,7 @@ function CommentUpdate(){
         if(isSaving) return;
 
         if (!comment.content.trim()) {
-            alert("Nội dung không được để trống.");
+            alert("Nội dung bình luận không được để trống.");
             return;
         }
         setIsSaving(true)
@@ -55,7 +43,7 @@ function CommentUpdate(){
         axios.put(`http://localhost:8080/api/comment/${commentId}`,comment)
         .then((response)=>{
             alert("Cập nhật thành công");
-            navigate("/admin/comment"); // Quay về trang chủ
+            navigate("/"); // Quay về trang chủ
 
         }).catch((error) => {
               console.error("Lỗi cập nhật:", error.response?.data);
@@ -65,12 +53,14 @@ function CommentUpdate(){
 
     }
 
+
+
     return(
         <Container>
         <div>
-        <h1 className={cx("title", "py-5")} >Cập nhật bài viết</h1>
+        <h1 className={cx("title", "py-5")} >Cập nhật bình luận</h1>
             <Form onSubmit={handleUpdate}>
-                <Form.Group className={cx("my-3")}>
+                {/* <Form.Group className={cx("my-3")}>
                     <Form.Label className={cx("tit")}>Nội dung:</Form.Label>
                     <Form.Control
                     className={cx("post-content")}
@@ -80,7 +70,28 @@ function CommentUpdate(){
                     onChange={(e) => setComment({ ...comment, content: e.target.value })}
                     required
                     />
+                </Form.Group> */}
+
+                <Form.Group className={cx("quill")}>
+                    <ReactQuill
+                        ref={quillRef}
+                        className={cx("custom-quill")}
+                        value={comment.content}
+                        onChange={(value) => {
+                            if (value === "<p><br></p>") {
+                            setComment({ ...comment, content: "" }); // Xóa nội dung rỗng
+                            } else {
+                            setComment({ ...comment, content: value });
+                            }
+                        }}                        
+                        required
+                        style={{minHeight:"150px",fontSize:"20px"}}
+    //                     modules={{
+    //     toolbar: false,  // Tắt toolbar nhưng giữ lại phần nhập văn bản
+    //   }}
+                    />
                 </Form.Group>
+
             
                 <Form.Group>
                     <Form.Label className={cx("tit")}>Ngày tạo:</Form.Label>

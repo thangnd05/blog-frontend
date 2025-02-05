@@ -32,7 +32,7 @@ function AllSearch() {
                         `http://localhost:8080/api/posts/${postId}`
                       );
                       const postData = postResponse.data;
-                      console.log(postData)
+                      // console.log(postData)
                       
                       // Bước 3: Lấy thông tin user từ userId trong post
                       try {

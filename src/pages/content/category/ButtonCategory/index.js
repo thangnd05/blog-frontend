@@ -20,7 +20,6 @@ function CategoryDetails() {
 
     useEffect(() => {
         axios
-          // .get(`http://localhost:8080/api/postApprove`)
           .get(`http://localhost:8080/api/posts/category/${categoryId}`)
           .then(async (response) => {
             const CategoryDetails = response.data;
@@ -106,7 +105,7 @@ function CategoryDetails() {
           ))} */}
           <Link className={cx("btn-return")} as={Link} to={routes.home} >Trở lại</Link>
           <h1 className={cx("title-cate",)}>
-              {categories.categoryName}
+              Danh mục:{categories.categoryName}
           </h1>
             <Row className="g-4">
                 {/* Kiểm tra nếu có dữ liệu bài viết */}

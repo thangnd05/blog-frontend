@@ -25,6 +25,7 @@ function ChangePassword() {
     const [error,setError]=useState("")
     const navigate =useNavigate();
 
+    
 
 
     const gotoReturn =() =>{
@@ -33,6 +34,7 @@ function ChangePassword() {
     }
     const gotoLogin =() =>{
         setTimeout(()=>{
+            logout()
             navigate(routes.login)
            },2000)
     }
@@ -47,6 +49,8 @@ function ChangePassword() {
         const handleChangePassword = (e) => {
             setFormDataChange({ ...formDataChange, [e.target.name]: e.target.value });
         };
+
+        
     
     
         async function handleSaveChangePassword() {
@@ -78,10 +82,7 @@ function ChangePassword() {
                 setMessage("Thay đổi mật khẩu thành công");
                 setError(""); // Xóa thông báo lỗi nếu thành công
                 setChangePassword(true); // Đánh dấu trạng thái đã đổi mật khẩu
-
-                setTimeout(()=>{
-                    logout();
-                },1000)
+                gotoLogin()
 
 
         
@@ -107,11 +108,18 @@ function ChangePassword() {
             }
         }
 
+        const handleKeyDown = (event) => {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
+                handleSaveChangePassword()
+            }
+        };
+
 
 
         return (
             <Container>
-                <Form>
+                <Form onKeyDown={handleKeyDown}>
                     <Form.Group controlId="oldPassword">
                         <Form.Label>Mật khẩu cũ</Form.Label>
                         <Form.Control 
@@ -155,11 +163,10 @@ function ChangePassword() {
                         variant="success" 
                         onClick={() => {
                             handleSaveChangePassword(); 
-                            setChangePassword(true); 
-                            gotoLogin(); // Chuyển hướng đến trang đăng nhập
+                            setChangePassword(true);
                         }} 
                         className={cx("mt-3", "btn-save")}
-                    >
+                        >
                         Xác nhận
                     </Button>
 

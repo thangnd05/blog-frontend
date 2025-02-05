@@ -53,3 +53,20 @@
         background-color: transparent;
     }
 }
+
+.quill p {
+    font-size: 1.8rem;
+}
+.quill ::placeholder{
+    font-size: 1.8rem;
+}
+.ql-editor::before {
+    font-size: 18px !important;  /* Tăng kích thước */
+    color: gray !important;      /* Màu chữ */
+    font-style: normal !important; /* Chữ thẳng */
+    opacity: 1 !important;       /* Đảm bảo placeholder hiển thị rõ */
+}
+
+
+
+  

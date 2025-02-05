@@ -17,7 +17,6 @@ function ResetPassWord() {
   const navigate = useNavigate();
 
   const handleResetPassword = async (e) => {
-    e.preventDefault();
     setMessage('');
     setError('');
   
@@ -56,6 +55,13 @@ function ResetPassWord() {
       } 
     }
   };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
+        handleResetPassword()
+    }
+};
   
 
   return (
@@ -64,11 +70,7 @@ function ResetPassWord() {
         className={cx("wrap")}
         id="login-form"
         onSubmit={handleResetPassword}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            handleResetPassword(e);
-          }
-        }}
+        onKeyDown={handleKeyDown}
       >
         <h1>Đặt lại mật khẩu</h1>
 
