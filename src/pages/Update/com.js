@@ -60,17 +60,6 @@ function CommentUpdate(){
         <div>
         <h1 className={cx("title", "py-5")} >Cập nhật bình luận</h1>
             <Form onSubmit={handleUpdate}>
-                {/* <Form.Group className={cx("my-3")}>
-                    <Form.Label className={cx("tit")}>Nội dung:</Form.Label>
-                    <Form.Control
-                    className={cx("post-content")}
-                    as="textarea"
-                    rows={13}
-                    value={comment.content}
-                    onChange={(e) => setComment({ ...comment, content: e.target.value })}
-                    required
-                    />
-                </Form.Group> */}
 
                 <Form.Group className={cx("quill")}>
                     <ReactQuill
@@ -86,9 +75,6 @@ function CommentUpdate(){
                         }}                        
                         required
                         style={{minHeight:"150px",fontSize:"20px"}}
-    //                     modules={{
-    //     toolbar: false,  // Tắt toolbar nhưng giữ lại phần nhập văn bản
-    //   }}
                     />
                 </Form.Group>
 

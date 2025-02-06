@@ -26,6 +26,7 @@ function Comment() {
     const { id } = useParams();
     
 
+    
 
     // Lấy dữ liệu bình luận
     useEffect(() => {

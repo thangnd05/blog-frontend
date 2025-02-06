@@ -2,6 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { FaFacebookSquare, FaInstagram, FaYoutube,FaEnvelope } from 'react-icons/fa';
 import styles from './footer.module.scss';
 import { Link } from 'react-router-dom';
+import { name } from '~/assets/images';
 import routes from '~/config';
 
 function Footer() {
@@ -33,7 +34,7 @@ function Footer() {
 
                         {/* Grid column */}
                         <Col lg={3} md={6} className="mb-4 mb-md-0">
-                            <h5 className="text-uppercase mb-4">EDT</h5>
+                            <h5 className="mb-4 fw-bold" style={{fontSize:"2rem"}}>{name}</h5>
                             <ul className="list-unstyled">
                                 <li className="mb-2">
                                     <Link  to={routes.about} className="text-white">Giới thiệu</Link>

@@ -12,6 +12,7 @@ import { useContext } from 'react';
 import routes from '~/config';
 import axios from 'axios';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { name } from '~/assets/images';
 const cx=classNames.bind(style)
 
 function Header() {
@@ -53,8 +54,8 @@ function Header() {
       <Navbar expand="lg" className={cx("bg-body-tertiary p-5")}>
         <Container>
           {/* Brand */}
-          <Navbar.Brand as={Link} to={routes.home} className={cx("brand")}>
-            EDT
+          <Navbar.Brand as={Link} to={routes.home} className={cx("brand","fw-bold")}>
+            {name}
           </Navbar.Brand>
   
           {/* Nút Offcanvas (hiện trên màn hình nhỏ) */}

@@ -199,7 +199,6 @@ function PostTabeProFile() {
                     }}
                   />
                 </p>
-                <p>{post.content}</p>
                 <p>
                   <strong>Danh mục:</strong> {post.categoryName}
                 </p>

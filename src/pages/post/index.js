@@ -8,7 +8,6 @@ import { fetchUserId } from "~/hook/service";
 import JoditEditor from 'jodit-react';
 
 
-
 const cx = classNames.bind(styles);
 
 function Post() {
@@ -36,6 +35,7 @@ const config={
     replaceNBSP: true, // Xóa các ký tự khoảng trắng không cần thiết
     removeEmptyBlocks: false, // Xóa các thẻ rỗng 
   }
+
 
   useEffect(() => {
     axios.get(`http://localhost:8080/api/category`)
@@ -85,13 +85,11 @@ const config={
       return navigate("/login");
     }
 
-    // Xử lý xuống dòng cho nội dung bài viết
-    const formattedContent = content.replace(/\n/g, '<br />'); // Xử lý xuống dòng
     const formDataWithContent = new FormData();
 
     // Thêm dữ liệu vào FormData
     formDataWithContent.append("title", title);
-    formDataWithContent.append("content", formattedContent);
+    formDataWithContent.append("content",content);
     formDataWithContent.append("userId", userId); // Sử dụng userId từ state
     formDataWithContent.append("categoryId", categoryId);
     if (file) formDataWithContent.append("file", file);
@@ -161,7 +159,6 @@ const handleCategoryChange = (e) => {
               onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập
               />
 
-               
           </Form.Group>
 
           <Form.Group>
