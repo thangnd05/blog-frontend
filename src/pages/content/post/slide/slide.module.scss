@@ -1,0 +1,48 @@
+
+.inf{
+    background: linear-gradient(to right,#FF1361, #ed6ea0, #ec8c69, );
+    height: 220px !important;
+    border-radius: 15px;
+    
+}
+.inf2{
+    background: linear-gradient(to right, #3d3393, #2b76b9, #2cacd1, #35eb93);
+    height: 220px !important;
+    border-radius: 15px;
+}
+.inf3{
+    background: linear-gradient(to right, #0250c5, #d43f8d);
+    height: 220px !important;
+    border-radius: 15px;
+}
+.carousel-control-prev-icon{
+    color: black !important;
+}
+.info{
+    position: absolute;
+    top:10%;
+    left: 12%;;
+    font-size: 3rem;
+    color: white;
+    font-weight: 700;
+}
+.btn-info{
+    color: white;
+    font-size: 2.2rem;
+    background-color: transparent;
+    padding: 0 20px;
+    border: solid 2px white;
+    display: flex;
+    justify-content: space-between;
+
+    &:hover{
+        background-color: white;
+        color: #0250c5;
+    }
+}
+.git{
+    &:hover{
+        color: #d43f8d !important;
+
+    }
+}

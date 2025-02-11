@@ -24,6 +24,7 @@ function Post() {
   const [error,setError] =useState("")
 
   const navigate = useNavigate();
+  
 
 
 //dùng để nhập content khi dùng texteditor  
@@ -56,7 +57,8 @@ const config={
 //lay du lieu thong tin nguoi dung
   useEffect(() => {
           fetchUserId(setUserId); // Gọi hàm và truyền `setUserId`
-      }, []);
+          console.log(userId)
+      }, [userId]);
 
 
 
@@ -121,6 +123,7 @@ const handleCategoryChange = (e) => {
 
 
 
+
  
   return (
     <Container>
@@ -158,7 +161,6 @@ const handleCategoryChange = (e) => {
               }}
               onInput={(e) => e.target.setCustomValidity("")} // Xóa thông báo khi người dùng nhập
               />
-
           </Form.Group>
 
           <Form.Group>

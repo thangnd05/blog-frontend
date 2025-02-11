@@ -85,7 +85,7 @@ function PostItem() {
       <div className={cx('post-item')}>
         {Object.keys(groupCategory).map((categoryName) => (
           <div key={categoryName}>
-            <h1 className={cx('title', 'mt-5', 'py-5')}>Bài viết về {categoryName}</h1>
+            <h1 className={cx('title', 'mt-5', 'py-5')}>{categoryName}</h1>
             <Row className="g-4">
               {groupCategory[categoryName]
               //.slice(start, end): Phương thức này trả về một phần của mảng từ vị trí start đến 

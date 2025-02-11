@@ -105,7 +105,7 @@ function CategoryDetails() {
           ))} */}
           <Link className={cx("btn-return")} as={Link} to={routes.home} >Trở lại</Link>
           <h1 className={cx("title-cate",)}>
-              Danh mục:{categories.categoryName}
+              {categories.categoryName}
           </h1>
             <Row className="g-4">
                 {/* Kiểm tra nếu có dữ liệu bài viết */}

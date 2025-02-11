@@ -1,0 +1,12 @@
+.btn-cate{
+    padding: 5px 15px;
+    border-radius:10px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: black;
+}
+@media(max-width:767px){
+    .btn-cate{
+        font-size: 1.5rem;
+    }
+}

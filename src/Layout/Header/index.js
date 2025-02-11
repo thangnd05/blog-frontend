@@ -52,7 +52,7 @@ function Header() {
   return (
     <div className={cx("wrapper")}>
       <Navbar expand="lg" className={cx("bg-body-tertiary p-5")}>
-        <Container>
+        <Container fluid="lg">
           {/* Brand */}
           <Navbar.Brand as={Link} to={routes.home} className={cx("brand","fw-bold")}>
             {name}
@@ -74,7 +74,7 @@ function Header() {
               <Nav.Link as={Link} to={routes.content} className={cx("mx-5", "home")}>
                 Bài viết
               </Nav.Link>
-              <Nav.Link as={Link} to={routes.about} className={cx("mx-5", "home")}>
+              <Nav.Link as={Link} to={routes.about} className={cx("mx-2", "home")}>
                 Giới thiệu
               </Nav.Link>
             </Nav>
@@ -88,7 +88,7 @@ function Header() {
           {user ? (
             <>
                 <Nav className={cx("me-auto")}>
-                  <Nav.Link as={Link} to={routes.post}className={cx("mx-5")}>
+                  <Nav.Link as={Link} to={routes.post} className={cx("mx-5")}>
                     <Button variant="btn btn-outline-secondary" className={cx("new-post")}>
                       Tạo bài viết
                     </Button>

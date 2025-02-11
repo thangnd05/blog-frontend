@@ -2,6 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import classNames from "classnames/bind";
+import style from "./btnCate.module.scss"
+
+const cx=classNames.bind(style)
 
 function Category() {
   const [categories, setCategories] = useState([]); 
@@ -24,22 +28,22 @@ function Category() {
   };
 
   return (
-    <div style={{ display: "flex", gap: "10px" , flexWrap: "wrap"}}>
-      {categories.map((category) => (
-        <Button
-          variant="outline-secondary"
-          key={category.category_id} 
-          style={{
-            padding: "5px 15px",
-            borderRadius: "10px",
-            fontSize: "1.4rem",
-            fontWeight: 700,
-          }}
-          onClick={() => handleClick(category.category_id)} // Truyền category.id khi click
-        >
-          {category.categoryName}
-        </Button>
-      ))}
+    <div>
+    <p className="fw-bold" style={{             
+              fontSize: "2.2rem",
+            }}>Đề xuất</p>
+      <div style={{ display: "flex", gap: "10px" , flexWrap: "wrap"}}>
+        {categories.map((category) => (
+          <Button
+            variant=""
+            key={category.category_id} 
+            className={cx("bg-body-tertiary","btn-cate")}
+            onClick={() => handleClick(category.category_id)} // Truyền category.id khi click
+          >
+            {category.categoryName}
+          </Button>
+        ))}
+      </div>
     </div>
   );
 }

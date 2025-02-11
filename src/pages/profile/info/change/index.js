@@ -118,21 +118,21 @@ function ChangePassword() {
 
 
         return (
-            <Container>
+            <Container className="mt-5">
                 <Form onKeyDown={handleKeyDown}>
                     <Form.Group controlId="oldPassword">
-                        <Form.Label>Mật khẩu cũ</Form.Label>
+                        <Form.Label>Mật khẩu hiện tại</Form.Label>
                         <Form.Control 
                             type="password"
                             name="oldPassword"
-                            placeholder="Mật khẩu cũ"
+                            placeholder="Mật khẩu hiện tại"
                             value={formDataChange.oldPassword}
                             onChange={handleChangePassword}
                             className={cx("input-info")}
                         />
                     </Form.Group>
         
-                    <Form.Group controlId="newPassword">
+                    <Form.Group controlId="newPassword" className="my-3">
                         <Form.Label>Mật khẩu mới</Form.Label>
                         <Form.Control 
                             type="password"

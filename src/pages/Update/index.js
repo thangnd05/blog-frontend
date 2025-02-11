@@ -32,7 +32,8 @@ function Update() {
     useEffect(() => {
         axios.get(`http://localhost:8080/api/posts/${postId}`)
           .then((response) => {
-            setPost(response.data);
+            const postData=response.data
+            setPost(postData);
           })
           .catch(() => {
             alert("Không thể tải bài viết. Vui lòng thử lại.");

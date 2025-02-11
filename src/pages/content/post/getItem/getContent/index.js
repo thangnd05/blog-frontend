@@ -50,11 +50,9 @@ function GetContent() {
                         <div className={cx("title", "d-flex justify-content-center")}>{data.title}</div>
                     </div>
 
-                        {/* <div className={cx("content", "pt-5")}>{data.content}</div> */}
-
                         {/* dangerouslySetInnerHTML : dung de doc duoc the html do post mang den */}
                         <div className={cx("content", "pt-3")} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.content) }}/>
-
+                    
                         <div className={cx("d-flex justify-content-between")}>
                             <div className="">
                                 <span className={cx("content")}>Tác giả</span>

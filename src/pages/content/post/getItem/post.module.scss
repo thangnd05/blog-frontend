@@ -29,11 +29,18 @@
 //post
 .title{
     font-weight: 700;
-    font-size: 3rem;
+    font-size: 4rem;
 }
 .showAll-btn{
     font-size: 1.8rem;
     color:rgb(108 117 125);
 }
+
+@media (max-width: 768px) {
+    .title{
+        font-size: 3rem;
+    }
+  }
+  
 
 
