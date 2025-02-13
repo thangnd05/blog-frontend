@@ -27,7 +27,7 @@ function Login() {
     
         try {
             // Gửi yêu cầu đăng nhập
-            const loginResponse = await axios.post("http://localhost:8080/api/login", {
+            const loginResponse = await axios.post("http://192.168.100.205:8080/api/login", {
                 username: username,
                 password: password,
             }, {
@@ -49,7 +49,7 @@ function Login() {
                     email: username, // Lưu email nếu đúng định dạng
                 };
 
-                const roleResponse = await axios.get(`http://localhost:8080/api/role/${emailRes.username}`);
+                const roleResponse = await axios.get(`http://192.168.100.205:8080/api/role/${emailRes.username}`);
                 const userRole = roleResponse.data;
                 // Điều hướng theo role
             if (userRole === "ADMIN") {
@@ -64,11 +64,11 @@ function Login() {
                 
             } else {
                 // Nếu không phải email, lấy thêm thông tin email từ backend
-                const emailResponse = await axios.get(`http://localhost:8080/api/username/email?username=${username}`);
+                const emailResponse = await axios.get(`http://192.168.100.205:8080/api/username/email?username=${username}`);
                 const email = emailResponse.data;
     
                 // Lấy vai trò (role)
-                const roleResponse = await axios.get(`http://localhost:8080/api/role/${username}`);
+                const roleResponse = await axios.get(`http://192.168.100.205:8080/api/role/${username}`);
                 const userRole = roleResponse.data;
     
                 // Tạo đối tượng user đầy đủ

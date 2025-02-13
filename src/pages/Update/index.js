@@ -30,7 +30,7 @@ function Update() {
     
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/posts/${postId}`)
+        axios.get(`http://192.168.100.205:8080/api/posts/${postId}`)
           .then((response) => {
             const postData=response.data
             setPost(postData);
@@ -63,7 +63,7 @@ function Update() {
         content: post.content // Giữ nguyên nội dung không thay đổi
     };   
       // Gửi request cập nhật bài viết
-      axios.put(`http://localhost:8080/api/posts/${postId}`, formDataWithContent, {
+      axios.put(`http://192.168.100.205:8080/api/posts/${postId}`, formDataWithContent, {
           headers: { "Content-Type": "application/json" },  // Đảm bảo header đúng
       })
           .then((response) => {

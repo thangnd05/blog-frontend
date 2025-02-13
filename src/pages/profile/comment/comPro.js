@@ -31,7 +31,7 @@ function ComProFileTable(){
           const handleDelete=(commentId)=>{
             if(window.confirm('Xóa bình luận này')){
                 setIsDeleting(true);
-                axios.delete(`http://localhost:8080/api/comment/${commentId}`)
+                axios.delete(`http://192.168.100.205:8080/api/comment/${commentId}`)
                 .then(()=>{
                     setData(data.filter((com) => com.comment_id !== commentId))
                     alert("Bình luận đã được xóa ");
@@ -52,7 +52,7 @@ function ComProFileTable(){
           }
 
         //lay toan bo comment cuar userid
-        axios.get(`http://localhost:8080/api/comment/user/${userId}`)
+        axios.get(`http://192.168.100.205:8080/api/comment/user/${userId}`)
         .then(async(response)=>{
           const postsData=response.data
     
@@ -61,7 +61,7 @@ function ComProFileTable(){
               try{
                 const userResponse = await axios.get(
                     //goi tu userId de lay thong tin
-                  `http://localhost:8080/api/user/${comment.userId}`
+                  `http://192.168.100.205:8080/api/user/${comment.userId}`
                 )
                 return { ...comment, username: userResponse.data.username };
     

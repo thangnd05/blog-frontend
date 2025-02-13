@@ -16,7 +16,7 @@ function PrivateRoute({ children }) {
 
         }
         axios
-            .get(`http://localhost:8080/api/role?email=${value.email}`)
+            .get(`http://192.168.100.205:8080/api/role?email=${value.email}`)
             .then((roleResponse) => {
                 setRole(roleResponse.data); // Cập nhật role
                 // console.log("API trả về role:", roleResponse.data);

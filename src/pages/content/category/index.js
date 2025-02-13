@@ -14,7 +14,7 @@ function Category() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/category")
+      .get("http://192.168.100.205:8080/api/category")
       .then((response) => {
         setCategories(response.data); 
       })

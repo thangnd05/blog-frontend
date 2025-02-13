@@ -18,7 +18,7 @@ function TableCategory() {
   const ref=useRef();
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/category")
+    axios.get("http://192.168.100.205:8080/api/category")
       .then((res) => {
         setData(res.data);
       })
@@ -30,7 +30,7 @@ function TableCategory() {
   const handleDelete = (category_id) => {
     if (window.confirm('Bạn có chắc muốn xóa danh mục này?')) {
       setIsDeleting(true);
-      axios.delete(`http://localhost:8080/api/category/${category_id}`)
+      axios.delete(`http://192.168.100.205:8080/api/category/${category_id}`)
         .then(() => {
           setData(data.filter((category) => category.category_id !== category_id));
           alert("Danh mục đã được xóa");
@@ -59,7 +59,7 @@ function TableCategory() {
 
   const handleUpdate = () => {
     if (updateId && name) {
-      axios.put(`http://localhost:8080/api/category/${updateId}`, { categoryName: name })
+      axios.put(`http://192.168.100.205:8080/api/category/${updateId}`, { categoryName: name })
         .then(() => {
           setData(data.map(category => 
             category.category_id === updateId ? { ...category, categoryName: name } : category

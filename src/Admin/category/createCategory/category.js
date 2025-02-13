@@ -21,7 +21,7 @@ function CreateCategory() {
     formDataWithCategory.append("categoryName", category);
 
     axios
-      .post("http://localhost:8080/api/category", formDataWithCategory)
+      .post("http://192.168.100.205:8080/api/category", formDataWithCategory)
       .then((response) => {
         alert("Tạo danh mục thành công!");
         setCategory(""); 

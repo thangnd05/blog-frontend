@@ -10,13 +10,13 @@ function All() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const postsResponse = await axios.get('http://localhost:8080/api/posts');
+                const postsResponse = await axios.get('http://192.168.100.205:8080/api/posts');
                 setPost(postsResponse.data);
     
-                const userResponse = await axios.get('http://localhost:8080/api/user');
+                const userResponse = await axios.get('http://192.168.100.205:8080/api/user');
                 setUser(userResponse.data);
     
-                const commentResponse = await axios.get('http://localhost:8080/api/comment');
+                const commentResponse = await axios.get('http://192.168.100.205:8080/api/comment');
                 setComment(commentResponse.data);
             } catch (error) {
                 console.log(error);

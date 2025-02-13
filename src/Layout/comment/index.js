@@ -32,11 +32,11 @@ function Comment() {
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/posts/${id}/comments`);
+                const response = await axios.get(`http://192.168.100.205:8080/api/posts/${id}/comments`);
                 const commentsWithUsers = await Promise.all(
                     response.data.map(async (comment) => {
                         try {
-                            const userResponse = await axios.get(`http://localhost:8080/api/user/${comment.userId}`);
+                            const userResponse = await axios.get(`http://192.168.100.205:8080/api/user/${comment.userId}`);
                             return { ...comment, user: { username: userResponse.data.username } };
                         } catch {
                             return { ...comment, user: { username: "Anonymous" } };
@@ -68,7 +68,7 @@ function Comment() {
         }
         try {
             // Gửi bình luận mới
-            const response = await axios.post("http://localhost:8080/api/comment", {
+            const response = await axios.post("http://192.168.100.205:8080/api/comment", {
                 content: comment,
                 userId: userId,
                 postId: id,  // Đảm bảo bạn đang truyền id từ useParams nhung dung vs be
@@ -78,7 +78,7 @@ function Comment() {
             setComment("");
     
             // Fetch lại thông tin người dùng và bình luận để cập nhật danh sách
-            const userResponse = await axios.get(`http://localhost:8080/api/user/${userId}`);
+            const userResponse = await axios.get(`http://192.168.100.205:8080/api/user/${userId}`);
             const newComment = {
                 ...response.data,
                 user: { username: userResponse.data.username },
@@ -97,7 +97,7 @@ function Comment() {
         if (window.confirm("Bạn có chắc chắn muốn xóa bình luận này?")) {
             setIsDeleting(true); // Bắt đầu trạng thái đang xóa
             axios
-                .delete(`http://localhost:8080/api/comment/${commentId}`)
+                .delete(`http://192.168.100.205:8080/api/comment/${commentId}`)
                 .then(() => {
                     // Cập nhật lại danh sách sau khi xóa React sẽ render lại giao diện để 
                     // hiển thị danh sách bình luận đã được cập nhật. Bình luận có
@@ -137,7 +137,7 @@ function Comment() {
             return; // Ngừng thực hiện nếu nội dung trống
         }
         axios
-            .put(`http://localhost:8080/api/comment/${commentId}`, { content: newComment })
+            .put(`http://192.168.100.205:8080/api/comment/${commentId}`, { content: newComment })
             .then(() => {
                 // Cập nhật danh sách bình luận
                 setData((prevData) =>

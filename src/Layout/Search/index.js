@@ -20,7 +20,7 @@ function Search() {
     useEffect(() => {
         if (searchValue) {
             // Gửi yêu cầu GET đến API với giá trị tìm kiếm (searchValue)
-            axios.get(`http://localhost:8080/api/search?title=${searchValue}`)
+            axios.get(`http://192.168.100.205:8080/api/search?title=${searchValue}`)
                 .then((response) => {
                     // console.log(response.data);
                     setData(response.data);

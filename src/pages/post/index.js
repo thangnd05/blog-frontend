@@ -39,7 +39,7 @@ const config={
 
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/category`)
+    axios.get(`http://192.168.100.205:8080/api/category`)
       .then((res) => {
         setCategory(res.data); // Lưu danh sách danh mục
       })
@@ -98,7 +98,7 @@ const config={
 
     // Gửi dữ liệu lên server
     axios
-      .post("http://localhost:8080/api/posts", formDataWithContent, {
+      .post("http://192.168.100.205:8080/api/posts", formDataWithContent, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
