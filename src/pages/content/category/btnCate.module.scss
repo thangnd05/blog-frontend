@@ -4,6 +4,11 @@
     font-size: 1.6rem;
     font-weight: 600;
     color: black;
+
+    &:hover{
+        background-color: hsla(0,0%,86%,.4);
+        opacity: 2;
+    }
 }
 @media(max-width:767px){
     .btn-cate{

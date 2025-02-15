@@ -15,6 +15,8 @@ function Post() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [userId, setUserId] = useState(null); // Lưu userId
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
 
   const [category, setCategory] = useState([]);
@@ -64,6 +66,8 @@ const config={
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (isSubmitting) return; // Ngăn ngừa gửi nhiều lần
+  setIsSubmitting(true);
   
     if (!title.trim()) {
       setError("Tiêu đề không được để trống");

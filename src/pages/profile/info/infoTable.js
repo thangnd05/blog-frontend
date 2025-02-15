@@ -95,7 +95,7 @@ function InfoProfileTable() {
     const handleKeyDown = (event) => {
         if (event.key === "Enter") {
             event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
-            handleSave()
+            handleSave(event)
         }
     };
 
@@ -112,7 +112,7 @@ function InfoProfileTable() {
                 <div className={cx("profile-container")}>
                     {isEdit ? (
                         <div>
-                            <Form onKeyDown={handleKeyDown}>
+                            <Form onKeyDown={handleKeyDown} onSubmit={handleSave}>
                                 <Form.Group controlId="fullname">
                                     <Form.Label>Họ và Tên</Form.Label>
                                     <Form.Control

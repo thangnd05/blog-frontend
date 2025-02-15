@@ -20,7 +20,7 @@ function Register() {
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         if (!rememberMe) {
             setMessage("Bạn phải đồng ý với điều khoản & điều kiện.");
             setMessageType("error");
@@ -58,8 +58,7 @@ function Register() {
 
     const handleKeyDown = (event) => {
         if (event.key === "Enter") {
-            event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
-            handleRegister()
+            handleRegister(event)
         }
     };
 

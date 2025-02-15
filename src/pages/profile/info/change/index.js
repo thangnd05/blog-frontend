@@ -119,7 +119,7 @@ function ChangePassword() {
 
         return (
             <Container className="mt-5">
-                <Form onKeyDown={handleKeyDown}>
+                <Form onKeyDown={handleKeyDown} >
                     <Form.Group controlId="oldPassword">
                         <Form.Label>Mật khẩu hiện tại</Form.Label>
                         <Form.Control 

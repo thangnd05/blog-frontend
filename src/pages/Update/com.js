@@ -31,7 +31,6 @@ function CommentUpdate(){
 
     const handleUpdate=(e)=>{
         e.preventDefault(); // Ngăn chặn form submit mặc định
-
         if(isSaving) return;
 
         if (!comment.content.trim()) {

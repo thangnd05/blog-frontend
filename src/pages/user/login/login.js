@@ -106,7 +106,7 @@ function Login() {
     const handleKeyDown = (event) => {
         if (event.key === "Enter") {
             event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
-            handleLogin()
+            handleLogin(event)
         }
     };
     
