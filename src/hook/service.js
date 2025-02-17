@@ -7,7 +7,7 @@ export const fetchUserId = async (setUserId) => {
     // if (!currentUser.username) return;
 
     // try {
-    //     const response = await axios.get(`http://192.168.100.205:8080/api/users?username=${currentUser.username}`);
+    //     const response = await axios.get(`http://localhost:8080/api/users?username=${currentUser.username}`);
     //     setUserId(response.data.user_id); // Lưu userId vào state
     //     console.log("id", response.data.user_id);
     // } catch (error) {
@@ -21,7 +21,7 @@ export const fetchUserId = async (setUserId) => {
     if (!currentUser.email) return;
 
     try {
-        const response = await axios.get(`http://192.168.100.205:8080/api/mail/${currentUser.email}`);
+        const response = await axios.get(`http://localhost:8080/api/mail/${currentUser.email}`);
         setUserId(response.data.user_id); // Lưu userId vào state
         // console.log("id", response.data.user_id);
     } catch (error) {

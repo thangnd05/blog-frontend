@@ -70,7 +70,7 @@ function ChangePassword() {
                 params.append("confirmPassword", formDataChange.confirmPassword);
         
                 const response = await axios.put(
-                    `http://192.168.100.205:8080/api/change-password/${userId}`,
+                    `http://localhost:8080/api/change-password/${userId}`,
                     params,
                     {
                         headers: {

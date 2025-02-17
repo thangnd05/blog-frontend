@@ -15,7 +15,7 @@ function AllSearch() {
 
     useEffect(() => {
         if (searchValue) {
-            axios.get(`http://192.168.100.205:8080/api/search?title=${searchValue}`)
+            axios.get(`http://localhost:8080/api/search?title=${searchValue}`)
             .then(async (response) => {
                 const postTitle = response.data;
           
@@ -29,7 +29,7 @@ function AllSearch() {
                     // Bước 2: Lấy thông tin bài đăng từ postId
                     try {
                       const postResponse = await axios.get(
-                        `http://192.168.100.205:8080/api/posts/${postId}`
+                        `http://localhost:8080/api/posts/${postId}`
                       );
                       const postData = postResponse.data;
                       // console.log(postData)
@@ -37,7 +37,7 @@ function AllSearch() {
                       // Bước 3: Lấy thông tin user từ userId trong post
                       try {
                         const userResponse = await axios.get(
-                          `http://192.168.100.205:8080/api/user/${postData.userId}`
+                          `http://localhost:8080/api/user/${postData.userId}`
     
                         );
                         username = userResponse.data.username || "Anonymous";
@@ -52,7 +52,7 @@ function AllSearch() {
                       // Bước 4: Lấy ảnh của bài đăng
                       try {
                         const imagesResponse = await axios.get(
-                          `http://192.168.100.205:8080/api/image/post/${postId}`
+                          `http://localhost:8080/api/image/post/${postId}`
                         );
                         images = imagesResponse.data || [];
                       } catch (error) {
@@ -93,7 +93,7 @@ function AllSearch() {
                                 {post.images && post.images.length > 0 ? (
                                         <Card.Img
                                             className={cx("img-content")}
-                                            src={`http://192.168.100.205:8080/api/image/post/${post.post_id}`} 
+                                            src={`http://localhost:8080/api/image/post/${post.post_id}`} 
                                             alt={post.title}
                                         />
                                         ) : (

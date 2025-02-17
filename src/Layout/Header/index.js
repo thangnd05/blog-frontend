@@ -27,7 +27,7 @@ function Header() {
   useEffect(() => {
   if (user && user.email) { // Kiểm tra xem 'value' và 'value.email' có hợp lệ không
             axios
-                .get(`http://192.168.100.205:8080/api/mail/${user.email}`)
+                .get(`http://localhost:8080/api/mail/${user.email}`)
                 .then((res) => {
                     setData(res.data);
                 })

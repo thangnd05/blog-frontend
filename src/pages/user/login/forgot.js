@@ -18,7 +18,6 @@ function ForgotPassword() {
 
   const handleReset = async (e) => {
     e.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
-
     setIsLoading(true); // Bắt đầu trạng thái loading
     setMessage('');
     setError('');
@@ -30,7 +29,7 @@ function ForgotPassword() {
 
         // Gửi yêu cầu đặt lại mật khẩu
         const response = await axios.post(
-          "http://192.168.100.205:8080/api/auth/forgot-password",
+          "http://localhost:8080/api/auth/forgot-password",
           params,
           {
             headers: {

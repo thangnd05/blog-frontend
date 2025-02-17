@@ -36,7 +36,7 @@ function InfoProfileTable() {
     
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://192.168.100.205:8080/api/user/${userId}`);
+                const response = await axios.get(`http://localhost:8080/api/user/${userId}`);
                 if (isMounted){
                     setData(response.data);
                     setFormData({
@@ -65,7 +65,7 @@ function InfoProfileTable() {
         try {
             
             // Gửi yêu cầu PUT để cập nhật thông tin người dùng trên server
-            await axios.put(`http://192.168.100.205:8080/api/user/${userId}`, formData);
+            await axios.put(`http://localhost:8080/api/user/${userId}`, formData);
             setData(formData);
             setIsEdit(false);
     

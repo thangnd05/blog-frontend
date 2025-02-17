@@ -22,7 +22,7 @@ function ComTable() {
     const handleDelete=(commentId)=>{
         if(window.confirm('Xóa bình luận này')){
             setIsDeleting(true);
-            axios.delete(`http://192.168.100.205:8080/api/comment/${commentId}`)
+            axios.delete(`http://localhost:8080/api/comment/${commentId}`)
             .then(()=>{
                 setData(data.filter((com) => com.comment_id !== commentId))
                 alert("Bình luận đã được xóa ");
@@ -39,7 +39,7 @@ function ComTable() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get("http://192.168.100.205:8080/api/comment");
+            const response = await axios.get("http://localhost:8080/api/comment");
             const postsData = response.data;
       
             const CommentWithDetail = await Promise.all(
@@ -49,7 +49,7 @@ function ComTable() {
                     
                 try {
                   const userResponse = await axios.get(
-                    `http://192.168.100.205:8080/api/user/${com.userId}`
+                    `http://localhost:8080/api/user/${com.userId}`
                   );
                   username = userResponse.data.username || "Anonymous";
                 } catch (err) {
@@ -58,7 +58,7 @@ function ComTable() {
 
                 try {
                     const postResponse = await axios.get(
-                      `http://192.168.100.205:8080/api/posts/${com.postId}`
+                      `http://localhost:8080/api/posts/${com.postId}`
                     );
                     title = postResponse.data.title || "Anonymous";
                   } catch (err) {
@@ -144,7 +144,7 @@ function ComTable() {
                         </tbody>
                     </Table> */}
                 {/* </div>
-            ))} */} *
+            ))} */}
             <div className="">
   {Object.keys(groupedComments).map((title) => (
     <div key={title} className={cx('mt-4')}>

@@ -18,14 +18,14 @@ function GetContent() {
         const fetchData = async () => {
             try {
                 // Gọi API lấy bài viết theo ID
-                const postResponse = await axios.get(`http://192.168.100.205:8080/api/posts/${id}`);
+                const postResponse = await axios.get(`http://localhost:8080/api/posts/${id}`);
                 const postData = postResponse.data;
 
                 // Lưu dữ liệu bài viết vào localStorage
                 // localStorage.setItem("postData", JSON.stringify(postData));
 
                 // Gọi API lấy thông tin người dùng
-                const userResponse = await axios.get(`http://192.168.100.205:8080/api/user/${postData.userId}`);
+                const userResponse = await axios.get(`http://localhost:8080/api/user/${postData.userId}`);
                 const enrichedData = {
                     ...postData,
                     user: { username: userResponse.data.username },

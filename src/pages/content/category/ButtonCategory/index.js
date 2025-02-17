@@ -20,7 +20,7 @@ function CategoryDetails() {
 
     useEffect(() => {
         axios
-          .get(`http://192.168.100.205:8080/api/posts/category/${categoryId}`)
+          .get(`http://localhost:8080/api/posts/category/${categoryId}`)
           .then(async (response) => {
             const CategoryDetails = response.data;
       
@@ -34,7 +34,7 @@ function CategoryDetails() {
                 // Bước 2: Lấy thông tin bài đăng từ postId
                 try {
                   const postResponse = await axios.get(
-                    `http://192.168.100.205:8080/api/posts/${postId}`
+                    `http://localhost:8080/api/posts/${postId}`
                   );
                   const postData = postResponse.data;
                   // console.log(postData)
@@ -42,7 +42,7 @@ function CategoryDetails() {
                   // Bước 3: Lấy thông tin user từ userId trong post
                   try {
                     const userResponse = await axios.get(
-                      `http://192.168.100.205:8080/api/user/${postData.userId}`
+                      `http://localhost:8080/api/user/${postData.userId}`
 
                     );
                     username = userResponse.data.username || "Anonymous";
@@ -57,7 +57,7 @@ function CategoryDetails() {
       
                   // Bước 4: Lấy ảnh của bài đăng
                   try {
-                    const imagesResponse = await axios.get(`http://192.168.100.205:8080/api/image/post/${postId}`);
+                    const imagesResponse = await axios.get(`http://localhost:8080/api/image/post/${postId}`);
                     images = imagesResponse.data || [];
                   } catch (error) {
                     if (error.response?.status !== 404) {
@@ -88,7 +88,7 @@ function CategoryDetails() {
 
       useEffect(()=>{
         axios.get(
-          `http://192.168.100.205:8080/api/category/${categoryId}`
+          `http://localhost:8080/api/category/${categoryId}`
         ).then((res)=>{
           setCategories(res.data)
           // console.log(res.data)
@@ -117,7 +117,7 @@ function CategoryDetails() {
                                     {post.images && post.images.length > 0 ? (
                                         <Card.Img
                                             className={cx("img-content")}
-                                            src={`http://192.168.100.205:8080/api/image/post/${post.post_id}`} // Sử dụng ảnh đầu tiên
+                                            src={`http://localhost:8080/api/image/post/${post.post_id}`} // Sử dụng ảnh đầu tiên
                                             alt={post.title}
                                         />
                                         ) : (

@@ -15,7 +15,7 @@ function UserTable() {
   const[search,setSearch]=useState('')
 
     useEffect(()=>{
-      axios.get(`http://192.168.100.205:8080/api/user`
+      axios.get(`http://localhost:8080/api/user`
       )
     .then((respon)=>{
       setData(respon.data)
@@ -29,7 +29,7 @@ function UserTable() {
       if (window.confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
         setIsDeleting(true); // Bắt đầu trạng thái đang xóa
         axios
-          .delete(`http://192.168.100.205:8080/api/user/${userId}`)
+          .delete(`http://localhost:8080/api/user/${userId}`)
           .then(() => {
             // Cập nhật lại danh sách sau khi xóa
             setData(data.filter((user) => user.user_id !== userId));

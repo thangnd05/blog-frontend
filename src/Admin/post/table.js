@@ -23,7 +23,7 @@ function PostTable() {
     if (window.confirm("Bạn có chắc chắn muốn xóa bài viết này?")) {
       setIsDeleting(true); // Bắt đầu trạng thái đang xóa
       axios
-        .delete(`http://192.168.100.205:8080/api/posts/${postId}`)
+        .delete(`http://localhost:8080/api/posts/${postId}`)
         .then(() => {
           // Cập nhật lại danh sách sau khi xóa
           setData(data.filter((post) => post.post_id !== postId));
@@ -51,7 +51,7 @@ function PostTable() {
       setApproved(true); // Thêm trạng thái đang duyệt, nếu cần
   
       axios
-        .put(`http://192.168.100.205:8080/admin/approve/${postId}`)
+        .put(`http://localhost:8080/admin/approve/${postId}`)
         .then(() => {
           alert("Bài viết đã được duyệt thành công.");
         })
@@ -73,7 +73,7 @@ function PostTable() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://192.168.100.205:8080/api/posts");
+        const response = await axios.get("http://localhost:8080/api/posts");
         const postsData = response.data;
   
         const postsWithDetails = await Promise.all(
@@ -83,7 +83,7 @@ function PostTable() {
             
             try {
               const categoryResponse = await axios.get(
-                `http://192.168.100.205:8080/api/category/${post.categoryId}`
+                `http://localhost:8080/api/category/${post.categoryId}`
               );
               categoryName = categoryResponse.data.categoryName ;
             } catch (err) {
@@ -93,7 +93,7 @@ function PostTable() {
   
             try {
               const userResponse = await axios.get(
-                `http://192.168.100.205:8080/api/user/${post.userId}`
+                `http://localhost:8080/api/user/${post.userId}`
               );
               username = userResponse.data.username || "Anonymous";
             } catch (err) {

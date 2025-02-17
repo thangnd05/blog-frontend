@@ -21,7 +21,7 @@ function PostItem() {
   useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get("http://192.168.100.205:8080/api/postApprove");
+            const response = await axios.get("http://localhost:8080/api/postApprove");
             const postsData = response.data;
       
             const postsWithDetails = await Promise.all(
@@ -32,7 +32,7 @@ function PostItem() {
                 
                 try {
                   const categoryResponse = await axios.get(
-                    `http://192.168.100.205:8080/api/category/${post.categoryId}`
+                    `http://localhost:8080/api/category/${post.categoryId}`
                   );
                   categoryName = categoryResponse.data.categoryName ;
                 } catch (err) {
@@ -41,7 +41,7 @@ function PostItem() {
       
                 try {
                   const userResponse = await axios.get(
-                    `http://192.168.100.205:8080/api/user/${post.userId}`
+                    `http://localhost:8080/api/user/${post.userId}`
                   );
                   username = userResponse.data.username || "Anonymous";
                 } catch (err) {
@@ -49,7 +49,7 @@ function PostItem() {
       
                 try {
                   const imagesResponse = await axios.get(
-                    `http://192.168.100.205:8080/api/image/post/${post.post_id}`
+                    `http://localhost:8080/api/image/post/${post.post_id}`
                   );
                   images = imagesResponse.data || [] || null;
                 } catch (err) {
@@ -103,7 +103,7 @@ function PostItem() {
                       {post.images && post.images.length > 0 ? (
                         <Card.Img
                           className={cx('img-content')}
-                          src={`http://192.168.100.205:8080/api/image/post/${post.post_id}`}
+                          src={`http://localhost:8080/api/image/post/${post.post_id}`}
                           alt={post.title}
                         />
                       ) 

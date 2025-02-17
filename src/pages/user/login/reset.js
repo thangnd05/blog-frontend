@@ -35,7 +35,7 @@ function ResetPassWord() {
   
       // Gửi yêu cầu đặt lại mật khẩu
       const response = await axios.post(
-        "http://192.168.100.205:8080/api/auth/reset-password",
+        "http://localhost:8080/api/auth/reset-password",
         params,
         {
           headers: {

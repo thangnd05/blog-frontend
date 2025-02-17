@@ -5,6 +5,9 @@ import { Container, Form, Button } from "react-bootstrap";
 import classNames from "classnames/bind";
 import styles from "../post/post.module.scss"; // Nếu có sử dụng CSS module
 import JoditEditor from 'jodit-react';
+import { fetchUserId } from '~/hook/service';
+import routes from '~/config';
+
 
 
 
@@ -15,6 +18,8 @@ function Update() {
     const navigate = useNavigate();
     const [post, setPost] = useState({ title: "", content: "" });
     const [isSaving, setIsSaving] = useState(false);
+    const [userId,setUserId]=useState("")
+
 
 
 
@@ -30,15 +35,19 @@ function Update() {
     
 
     useEffect(() => {
-        axios.get(`http://192.168.100.205:8080/api/posts/${postId}`)
+        axios.get(`http://localhost:8080/api/posts/${postId}`)
           .then((response) => {
             const postData=response.data
             setPost(postData);
+            fetchUserId(setUserId); // Gọi hàm và truyền `setUserId` 
+            console.log(postData.userId ,userId)   
+
+              
           })
           .catch(() => {
             alert("Không thể tải bài viết. Vui lòng thử lại.");
           });
-      }, [postId]);
+      }, [postId,userId]);
     
     const handleUpdate = (e) => {
       e.preventDefault(); // Ngăn chặn form submit mặc định
@@ -53,6 +62,12 @@ function Update() {
         alert("Nội dung không được để trống.");
         return;
     }
+    if (userId !== post.userId && userId !== 1) {
+      alert("Bạn hãy đăng nhập vào đúng tài khoản đã bình luận này ");
+      navigate(routes.home);
+      return;
+  }
+  
 
       setIsSaving(true); // Bật trạng thái lưu dữ liệu
     //   const formattedContent = post.content.replace(/\n/g, '<br />'); // Xử lý xuống dòng
@@ -63,7 +78,7 @@ function Update() {
         content: post.content // Giữ nguyên nội dung không thay đổi
     };   
       // Gửi request cập nhật bài viết
-      axios.put(`http://192.168.100.205:8080/api/posts/${postId}`, formDataWithContent, {
+      axios.put(`http://localhost:8080/api/posts/${postId}`, formDataWithContent, {
           headers: { "Content-Type": "application/json" },  // Đảm bảo header đúng
       })
           .then((response) => {

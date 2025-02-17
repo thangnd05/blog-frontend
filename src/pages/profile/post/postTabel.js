@@ -31,7 +31,7 @@ function PostTabeProFile() {
     if (window.confirm("Bạn có chắc chắn muốn xóa bài viết này?")) {
       setIsDeleting(true); // Bắt đầu trạng thái đang xóa
       axios
-        .delete(`http://192.168.100.205:8080/api/posts/${postId}`)
+        .delete(`http://localhost:8080/api/posts/${postId}`)
         .then(() => {
           // Cập nhật lại danh sách sau khi xóa
           setData(data.filter((post) => post.post_id !== postId));
@@ -57,7 +57,7 @@ function PostTabeProFile() {
         //   return;
         // }
         
-        const response = await axios.get(`http://192.168.100.205:8080/api/posts/user/${userId}`);
+        const response = await axios.get(`http://localhost:8080/api/posts/user/${userId}`);
         if (response.status===404){
           return;
         }
@@ -69,7 +69,7 @@ function PostTabeProFile() {
             let categoryName = "";
 
             try {
-              const categoryResponse = await axios.get(`http://192.168.100.205:8080/api/category/${post.categoryId}`);
+              const categoryResponse = await axios.get(`http://localhost:8080/api/category/${post.categoryId}`);
               categoryName = categoryResponse.data.categoryName;
             } catch (err) {
               // console.error("Error fetching category data:", err);
@@ -79,7 +79,7 @@ function PostTabeProFile() {
             }
 
             try {
-              const userResponse = await axios.get(`http://192.168.100.205:8080/api/user/${post.userId}`);
+              const userResponse = await axios.get(`http://localhost:8080/api/user/${post.userId}`);
               username = userResponse.data.username || null;
             } catch (err) {
               // console.error("Error fetching user data:", err);
