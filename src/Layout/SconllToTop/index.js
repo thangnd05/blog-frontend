@@ -25,6 +25,8 @@ function ScrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  
+
   return (
     showScroll && (
       <button className={cx("scrollTopBtn")} onClick={scrollToTop}>

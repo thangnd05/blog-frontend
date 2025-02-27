@@ -43,7 +43,7 @@ function Register() {
             setLoading(false);
             if (err.response) {
                 if (err.response.status === 409) {
-                    setMessage("Email đã tồn tại. Vui lòng chọn email khác.");
+                    setMessage("Email hoặc Username đã tồn tại.");
                 } else if (err.response.status === 400) {
                     setMessage("Yêu cầu nhập mật khẩu.");
                 } else {
@@ -56,18 +56,13 @@ function Register() {
         }
     };
 
-    const handleKeyDown = (event) => {
-        if (event.key === "Enter") {
-            handleRegister(event)
-        }
-    };
 
 
     
 
     return (
         <div className={cx("bodic")}>
-            <Form className={cx("wrap")} id="login-form" onSubmit={handleRegister} onKeyDown={handleKeyDown}>
+            <Form className={cx("wrap")} id="login-form" onSubmit={handleRegister}>
                 <h1>Đăng ký</h1>
                 <Form.Group className={cx("input-box")}>
                     <Form.Control

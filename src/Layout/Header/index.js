@@ -13,6 +13,7 @@ import routes from '~/config';
 import axios from 'axios';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { name } from '~/assets/images';
+
 const cx=classNames.bind(style)
 
 function Header() {
@@ -53,9 +54,11 @@ function Header() {
     <div className={cx("wrapper")}>
       <Navbar expand="lg" className={cx("bg-body-tertiary p-5")}>
         <Container fluid="lg">
-          {/* Brand */}
           <Navbar.Brand as={Link} to={routes.home} className={cx("brand","fw-bold")}>
-            {name}
+          <div className=" d-flex align-items-center justify-content-center " style={{ width: '140px' }}>
+          <Image src={images.logo} alt='logo' height="70" loading="lazy" className={cx("logo-brand")}/>
+          {name}
+          </div>         
           </Navbar.Brand>
   
           {/* Nút Offcanvas (hiện trên màn hình nhỏ) */}
@@ -69,12 +72,9 @@ function Header() {
           </Button>
   
           {/* Navbar đầy đủ (hiện trên màn hình lớn) */}
-          <Navbar.Collapse id="basic-navbar-nav" className={cx("d-none d-lg-flex")}>
-            <Nav className={cx("me-auto")}>
-              <Nav.Link as={Link} to={routes.content} className={cx("mx-5", "home")}>
-                Bài viết
-              </Nav.Link>
-              <Nav.Link as={Link} to={routes.about} className={cx("mx-2", "home")}>
+          <Navbar.Collapse id="basic-navbar-nav" className={cx("d-none d-lg-flex ")}>
+            <Nav className={cx("mx-5" )}>            
+              <Nav.Link as={Link} to={routes.about} className={cx("home")}>
                 Giới thiệu
               </Nav.Link>
             </Nav>
@@ -169,7 +169,7 @@ function Header() {
                 <Dropdown>               
                   <Dropdown.Toggle as="div" className={cx("user-info","my-2")}>
                     <Image
-                      src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/07/anh-dep-thien-nhien-2-1.jpg"
+                      src={images.avtImage}
                       alt="Avatar"
                       className={cx("avatar")}
                     />

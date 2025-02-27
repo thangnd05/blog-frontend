@@ -6,8 +6,7 @@
     color: black;
 
     &:hover{
-        background-color: hsla(0,0%,86%,.4);
-        opacity: 2;
+        background-color: rgba(218,220,222,1) !important;
     }
 }
 @media(max-width:767px){

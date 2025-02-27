@@ -4,12 +4,14 @@ import DefaultLayout from "./Layout/DefaultLayout";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserProvider } from "./pages/user/IsLogin";
+import ScrollHandler from "./Layout/ScrollToTopOnRouteChange";
 
 function App() {
   return (
     <UserProvider>
       <Router>
-        <div className="App">
+      <ScrollHandler/>
+      <div className="App">
           <Routes>
             {publicRoutes.map((route, index) => {
               const Page = route.component;
