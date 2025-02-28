@@ -29,9 +29,7 @@ function Category() {
 
   return (
     <div>
-    <p className="fw-bold" style={{             
-              fontSize: "2.2rem",
-            }}>Đề xuất</p>
+    <p className={cx("fw-bold pt-4" )} style={{fontSize: "2.2rem",}}>Đề xuất</p>
       <div style={{ display: "flex", gap: "10px" , flexWrap: "wrap"}}>
         {categories.map((category) => (
           <Button

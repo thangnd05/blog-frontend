@@ -21,7 +21,9 @@ function Login() {
     const navigate = useNavigate();
 
     
-    const handleLogin = async (e) => {
+    const handleLogin = async (event) => {
+        event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
+
 
         setIsLoading(true); // Bắt đầu trạng thái loading
         setMessage(""); // Xóa thông báo lỗi cũ (nếu có)
@@ -106,7 +108,6 @@ function Login() {
 
     const handleKeyDown = (event) => {
         if (event.key === "Enter") {
-            event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
             handleLogin(event)
         }
     };
