@@ -34,7 +34,33 @@
     .wrapper{
         display: block;
     }
-  }
+    
+    @media (max-width: 768px) {
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block; /* Tránh lỗi khoảng trắng dưới ảnh */
+          object-fit: cover; /* Có thể thay bằng 'contain' nếu muốn toàn bộ ảnh hiển thị */
+        }
+        .title{
+          width: 80%;
+          font-size: 2.4rem;
+        }
+      }
+    @media (min-width: 769px) and (max-width: 1200px){
+        img {
+            max-width: 100% !important;
+    height: auto !important;
+    display: block !important; /* Tránh lỗi khoảng trắng dưới ảnh */
+            object-fit: contain; /* Có thể thay bằng 'contain' nếu muốn toàn bộ ảnh hiển thị */
+          }
+          .title{
+            width: 90%;
+            font-size: 2.4rem;
+          }
+    
+    }
+}    
   
 
   

@@ -7,13 +7,12 @@ import ScrollToTop from "../SconllToTop";
 const cx=classNames.bind(style)
 
 
-function DefaultLayout({children}) {
-    return(
+function DefaultLayout({ children, noContainer = false }) {
+        return(
         <div className={cx('Wrapper')}>
         <Header/>
-        <div className={cx('content','container-lg')}>
-            {children}
-
+        <div className={cx("content", { "container-lg": !noContainer })}>         
+           {children}
         </div>
         <Footer/>
         <ScrollToTop/>

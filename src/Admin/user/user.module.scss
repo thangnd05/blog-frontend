@@ -34,6 +34,11 @@
     overflow-wrap: break-word; /* Hỗ trợ cho trình duyệt mới */
     white-space: normal;       /* Không giữ nội dung trên cùng một dòng */
   }
+p{
+    // margin-left: 0 !important;
+}
+
+  
   
 
 @media (max-width: 1024px) {
