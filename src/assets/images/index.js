@@ -1,10 +1,10 @@
 const images = {
-    // logo: require('~/assets/images/logo.svg').default,
-    noImage: require('~/assets/images/no-image.png'),
-    defaultImage:require("~/assets/images/postImageDefault.jpg"),
-    avtImage:require("~/assets/images/avtImage.jpg"),
-    logo:require("~/assets/images/logo.png")
+    noImage: require('./no-image.png'),
+    avtImage: require('./avtImage.jpg'),
+    logo: require('./logo.png'),
+    membership: require('./vip-member-banner.webp')
 };
+
 export const SearchIcon = ({ width = '2.4rem', height = '2.4rem', className }) => (
     <svg
         className={className}

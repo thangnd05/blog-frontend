@@ -47,7 +47,7 @@ function CommentUpdate(){
         }
 
         if (userId !== comment.userId && userId !== 1) {
-            alert("Bạn hãy đăng nhập vào đúng tài khoản đã bình luận này ");
+            alert("Bạn không đủ quyền để sửa bình luận này ");
             navigate(routes.home);
             return;
         }

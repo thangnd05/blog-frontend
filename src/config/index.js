@@ -36,7 +36,11 @@ const routes = {
     profile:'/profile',
     userPost: '/user/post',
     userComment: '/user/comment',
-    categoryDetails :'/category/:categoryId'
+    categoryDetails :'/category/:categoryId',
+
+
+    payment:'/payment',
+    paymentResult:'/payment/result'
 
 
 };

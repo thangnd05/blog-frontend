@@ -25,10 +25,10 @@ import Policy from '~/pages/poliService/policy';
 import Service from '~/pages/poliService/service';
 import InfoProfile from '~/pages/profile/info/info';
 import ChangePassword from '~/pages/profile/info/change';
+import PaymentMembership from '~/pages/profile/payment/paymentPro';
+import PaymentResult from '~/pages/profile/payment/paymentResult';
 
-
-
-const publicRoutes = [
+export const publicRoutes = [
     { path: routes.home, component: Content },
     { path: routes.content, component: Content },
     { path: routes.post, component: Post },
@@ -39,50 +39,35 @@ const publicRoutes = [
     { path: routes.error, component: Error },
     { path: routes.login, component: Login },
     { path: routes.register, component: Register },
-    { path: routes.admin, component: Admin, noContainer: true },
-    { path: routes.adminUser, component: User, noContainer: true },
-    { path: routes.adminPost, component: AdminPost , noContainer: true},
-    { path: routes.adminComment, component: AdminComment, noContainer: true },
+    { path:routes.policy,component:Policy},
+    { path:routes.service,component:Service},
+    { path:routes.categoryDetails, component:CategoryDetails, noContainer: true},
+    
+
+];
+
+export const privateRoutes=[
+    { path: routes.admin, component: Admin, noContainer: true , requiredRole: 'ADMIN'},
+    { path: routes.adminUser, component: User, noContainer: true , requiredRole: 'ADMIN'},
+    { path: routes.adminPost, component: AdminPost , noContainer: true, requiredRole: 'ADMIN'},
+    { path: routes.adminComment, component: AdminComment, noContainer: true, requiredRole: 'ADMIN' },
     { path: routes.updatePost, component: Update },
     { path: routes.updateComment, component: CommentUpdate },
     { path: routes.userPost, component: PostProFile , noContainer: true},
     { path: routes.userComment, component: CommentProFile , noContainer: true},
-    { path:routes.categoryDetails, component:CategoryDetails, noContainer: true},
-    {path:routes.adminCategory,component:CategoryAdmin, noContainer: true},
-    {path:routes.createCategory, component:CreateCategory},
-    {path:routes.errorAdmin,component:ErrorAdminPage},
-    {path:routes.reset,component:ResetPassWord},
-    {path:routes.forgot,component:ForgotPassword},
-    {path:routes.policy,component:Policy},
-    {path:routes.service,component:Service},
-    {path:routes.profile,component:InfoProfile, noContainer: true},
-    {path:routes.changePassword,component:ChangePassword}
+    { path:routes.adminCategory,component:CategoryAdmin, noContainer: true, requiredRole: 'ADMIN'},
+    { path:routes.createCategory, component:CreateCategory, requiredRole: 'ADMIN'},
+    { path:routes.reset,component:ResetPassWord},
+    { path:routes.forgot,component:ForgotPassword},
+    { path:routes.profile,component:InfoProfile, noContainer: true},
+    { path:routes.changePassword,component:ChangePassword},
+    { path:routes.errorAdmin,component:ErrorAdminPage},
+    { path:routes.payment,component:PaymentMembership,noContainer: true},
+    { path:routes.paymentResult,component:PaymentResult,noContainer: true}
+]
 
-
-
-
-
-
-];
-
-export default publicRoutes;
+export  default { publicRoutes, privateRoutes };
 
     
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ]
-
-// export default publicRoutes;

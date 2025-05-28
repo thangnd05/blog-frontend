@@ -1,8 +1,17 @@
 
+.carousel {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
 .inf{
-    background: linear-gradient(to right,#FF1361, #ed6ea0, #ec8c69, );
+    // background: linear-gradient(to right,#FF1361, #ed6ea0, #ec8c69, );
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     height: 220px !important;
     border-radius: 15px;
+
     
 }
 .inf2{
@@ -15,9 +24,7 @@
     height: 220px !important;
     border-radius: 15px;
 }
-.carousel-control-prev-icon{
-    color: black !important;
-}
+
 .info{
     position: absolute;
     top:10%;
@@ -45,4 +52,25 @@
         color: #d43f8d !important;
 
     }
+}
+.git1{
+    color: white;
+    font-size: 2.2rem;
+    background-color: transparent;
+    padding: 0 20px;
+    border: solid 2px white;
+    display: flex;
+    justify-content: space-between;
+    &:hover{
+    color: #64480b !important;
+        background-color: white;
+
+
+    }
+}
+
+/* global.css */
+.custom-carousel .carousel-inner {
+        border-radius: 15px !important;
+
 }

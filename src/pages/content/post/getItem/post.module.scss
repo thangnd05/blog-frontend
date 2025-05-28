@@ -17,14 +17,25 @@
     border: none;
     cursor: pointer;
 }
-.title-content{
+.title-container {
+    position: relative;
+    max-width: 100%;
+}
+
+.title-content {
     font-weight: 600;
     font-size: 2rem;
-    padding-top: 1rem;
-    white-space: nowrap; /* Không cho xuống dòng */
-    overflow: hidden; /* Ẩn phần nội dung bị tràn */
-    text-overflow: ellipsis; /* Thêm dấu "..." khi nội dung bị tràn */
-    max-width: 100%; /* Đảm bảo không vượt quá chiều rộng của phần tử chứa */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 60px); /* Trừ không gian cho badge */
+}
+
+.vip-badge {
+    font-size: 1.4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 //post
 .title{

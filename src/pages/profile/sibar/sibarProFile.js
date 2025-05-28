@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "~/pages/user/IsLogin";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faNewspaper, faRightFromBracket,faUser } from "@fortawesome/free-solid-svg-icons";
+import { faComment, faNewspaper, faRightFromBracket,faUser,faWebAwesome } from "@fortawesome/free-solid-svg-icons";
 import routes from "~/config";
 import classNames from "classnames/bind";
 import style from "./sibar.module.scss"
@@ -41,6 +41,14 @@ function SibarProFile() {
         aria-label="Bình luận"
       >
         <FontAwesomeIcon icon={faComment} className="mx-2" /> Bình luận
+      </Link>
+
+      <Link
+        to={routes.payment}
+        className="d-flex align-items-center mt-3 mt-md-0 text-nowrap"
+        aria-label="Bình luận"
+      >
+        <FontAwesomeIcon icon={faWebAwesome} className="mx-2" /> Mở VIP
       </Link>
 
       <Link

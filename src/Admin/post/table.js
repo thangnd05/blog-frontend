@@ -130,69 +130,6 @@ function PostTable() {
 
     </Form>  
 
-    {/* <Table striped bordered hover className={cx('mt-5')}>
-        <thead>
-        <tr>
-          <th>id</th>
-          <th>Tiêu đề</th>
-          <th style={{maxWidth:'450px'}}>Nội dung</th>
-          <th>Tác giả</th>
-          <th>Danh mục</th>
-          <th>Ngày tạo</th>
-          <th>ngày sửa</th>
-          <th>Hành động</th>
-          <th>Trạng thái</th>
-        </tr>
-      </thead>
-      <tbody >
-        {data
-          .filter((post)=>{
-          return search.toLowerCase() ==='' ? true : // Nếu không có từ khóa tìm kiếm, sẽ hiển thị tất cả
-           post.title.includes(search); // Kiểm tra nếu tên người dùng chứa chuỗi tìm kiếm (phân biệt chữ hoa chữ thường)
-          })
-           
-        .map((post) => (
-          
-          <tr key={post.post_id}>
-            <td>{post.post_id}</td>
-            <td>{post.title}</td>
-            {/* hien thi dung dc dinh dang text */}
-            {/* <td style={{ maxWidth: '600px' }} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }} />
-            <td>{post.username}</td>
-            <td>{post.categoryName}</td>
-            <td>{post.created_at}</td>
-            <td>{post.updated_at}</td>
-            <td  >
-
-            <Link to={routes.updatePost.replace(':postId',post.post_id)}>
-            <FontAwesomeIcon icon={faPen}></FontAwesomeIcon>
-              </Link>
-
-
-              <button onClick={()=> handleDelete(post.post_id)} disabled={isDeleting} className={cx("mx-3")} >
-                <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
-              </button>             
-            </td>   
-
-            <td>
-            {post.status === 'Approved' ?(
-              <span className={cx('text-success fw-bold')}>Đã duyệt</span>
-            ):(
-              <><Button variant="btn btn-outline-dark" onClick={()=>handleApprove(post.post_id)} disabled={post.approved || approved}>
-              <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
-            </Button>
-            <Button variant="btn btn-outline-dark" className={cx('mx-3')} onClick={()=> handleDelete(post.post_id)} disabled={isDeleting}>
-              <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
-            </Button></>
-            )}
-            </td>     
-          </tr>
-        ))}
-      </tbody>
-
-      
-    </Table> */} 
-
     <div className="">
   {data
     .filter((post) => {

@@ -2,8 +2,7 @@ import { Container } from "react-bootstrap";
 function ErrorAdminPage() {
     return (
         <Container>
-            <h1 >Forbidden</h1>
-            <p>You don’t have permission to access on this server</p>
+            <h1>Lỗi quyền truy cập</h1>
         </Container>
 
      );

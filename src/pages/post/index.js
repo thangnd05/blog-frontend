@@ -3,9 +3,10 @@ import { Container, Form, Button } from "react-bootstrap";
 import classNames from "classnames/bind";
 import styles from "./post.module.scss"; // Nếu có sử dụng CSS module
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { fetchUserId } from "~/hook/service";
 import JoditEditor from 'jodit-react';
+
 
 
 const cx = classNames.bind(styles);
@@ -15,15 +16,20 @@ function Post() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [userId, setUserId] = useState(null); // Lưu userId
+  const [isCheckVip, setCheckVip] = useState(false);
+
+  const [membership, setMembership] = useState("");
+
+
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-
-
   const [category, setCategory] = useState([]);
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("Chưa chọn tệp"); // Lưu tên tệp đã chọn
   const [categoryId, setCategoryId] = useState("");
   const [error,setError] =useState("")
+
+  const [errorMembership,setErrorMembership] =useState("")
+
 
   const navigate = useNavigate();
   
@@ -58,9 +64,49 @@ const config={
   
 //lay du lieu thong tin nguoi dung
   useEffect(() => {
-          fetchUserId(setUserId); // Gọi hàm và truyền `setUserId`
-          console.log(userId)
-      }, [userId]);
+    fetchUserId(setUserId);
+  }, []);
+
+
+  useEffect(() => {
+    if (!userId) return;
+
+    let isMounted = true;
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/api/user/${userId}`);
+            if (isMounted){
+                setMembership(response.data.membershipId);
+            } 
+        } catch (error) {
+            console.error("Lỗi khi lấy dữ liệu:", error);
+        }
+    };
+
+    fetchData();
+
+    return () => { isMounted = false }; // Cleanup tránh cập nhật state khi unmount
+}, [userId]);
+
+  const handleSelectmembership = (e) => {
+    const selectedValue = e.target.value;
+    const isVip = selectedValue === "true";
+
+    if (membership === 1 && isVip) {
+      setErrorMembership(
+        <div className={cx("text-danger", "mt-2")}>
+          Bạn không có quyền chọn VIP. Hãy nâng cấp thành viên{" "}
+          <Link to="/nang-cap">
+          <span className={cx("fw-bold", "text-danger")}>tại đây</span>          </Link> 
+        </div>
+      );
+      return;
+    }
+
+    setErrorMembership(null);
+    setCheckVip(isVip);
+  };
 
 
 
@@ -98,6 +144,8 @@ const config={
     formDataWithContent.append("content",content);
     formDataWithContent.append("userId", userId); // Sử dụng userId từ state
     formDataWithContent.append("categoryId", categoryId);
+    formDataWithContent.append("checkMembership", isCheckVip);
+
     if (file) formDataWithContent.append("file", file);
 
     // Gửi dữ liệu lên server
@@ -122,7 +170,6 @@ const config={
   };
 const handleCategoryChange = (e) => {
   setCategoryId(e.target.value); // Cập nhật categoryId
-  // console.log(e.target.value); // Log giá trị mới của categoryId
 };
 
 
@@ -181,8 +228,6 @@ const handleCategoryChange = (e) => {
                   {category.categoryName} {/* Hiển thị tên danh mục */}
                 </option>
               ))}
-
-
             </Form.Select>
           </Form.Group>
 
@@ -218,6 +263,24 @@ const handleCategoryChange = (e) => {
               </Button>
             </div>
           </Form.Group>
+
+
+          <Form.Group>
+          <Form.Label className={cx("tit")}>Quyền đọc</Form.Label>
+          <Form.Select
+              as="select"
+              className={cx("p-3", "categories", "categoryName")}
+              value={isCheckVip.toString()}
+              onChange={handleSelectmembership}
+            >
+              <option value="">Chọn quyền</option>
+              <option value="true">VIP</option>
+              <option value="false">Thường</option>
+            </Form.Select>
+          </Form.Group>
+
+          {errorMembership && <p className={cx("text-danger mt-2")}>{errorMembership}</p>}
+
 
           <Button
             variant="secondary"

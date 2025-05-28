@@ -6,6 +6,7 @@ function All() {
     const [user, setUser] = useState([]);
     const [comment, setComment] = useState([]);
 
+
     // Lấy dữ liệu bài viết
     useEffect(() => {
         const fetchData = async () => {
